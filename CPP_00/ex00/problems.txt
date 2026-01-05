@@ -1,0 +1,26 @@
+
+Message d'erreur sur les includes
+
+    (Problème)
+    Erreurs #include détectées. Mettez à jour includePath. 
+    Les tildes sont désactivés pour cette unité de traduction
+    (/Users/william/Desktop/CPP/CPP_00/ex00/megaphone.cpp).C/C++(1696) 
+    impossible d'ouvrir le fichier source "iostream". Veuillez exécuter
+    la commande « Sélectionner la configuration IntelliSense… » pour
+    localiser vos en-têtes système.C/C++(1696)
+
+            ex00 git:(main) ✗ gcc ./megaphone.cpp
+            ./megaphone.cpp:1:10: fatal error: 'iostream' file not found
+                1 | #include <iostream>
+                |          ^~~~~~~~~~
+            1 error generated.
+
+    (Explications)
+    VScode ne sait pas où trouver les Header C++ pour les libs.
+    Le fichier de configuration IntelliSense (includePath) est
+    mal configuré ou absent.
+    Le compilateur n'utilise pas clang++.
+
+    (Solution)
+    Forcer l'utilisation de clang++ 
+    (Cmd + Shift + P → C/C++: Edit Configurations (JSON))
