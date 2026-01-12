@@ -1,0 +1,318 @@
+En programmation orientée objet, une
+instance est un objet concret créé à partir d'un modèle abstrait appelé classe ; c'est une occurrence unique de cette classe, possédant ses propres données (état) tout en partageant la structure et les méthodes définies par la classe, comme une voiture (instance) fabriquée à partir du plan (classe) d'une voiture. L'action de créer une instance s'appelle l'instanciation. 
+Définition détaillée
+
+	Classe (Modèle) : Un plan ou un moule qui définit les propriétés (attributs) et les comportements (méthodes) communs à tous les objets d'un certain type (ex: la classe Voiture avec les attributs couleur, marque et la méthode démarrer).
+	Instance (Objet) : Une réalisation concrète et individuelle de la classe, avec des valeurs spécifiques pour ses attributs (ex: une instance maVoiture de la classe Voiture avec couleur = 'rouge', marque = 'Toyota').
+	Instanciation : Le processus de création d'une instance à partir d'une classe, impliquant l'allocation de mémoire et l'initialisation de l'objet (souvent via un constructeur). 
+
+==================================================================================
+
+namespace :
+	sac a notion
+	rassembler des notions
+	operateur (::)
+	namespace standard (std)
+
+==================================================================================
+
+Stdio streams :
+	cout -> sortie standard
+	cin -> entree standard
+	<< -> direction du flux
+	>> -> direction du flux
+	endl -> end of line = \n
+	cplusplus.com
+	c++98 (pas c++11)
+
+==================================================================================
+
+Class and Instance :
+	header en CPP .hpp > .h (plus safe)
+	declaration d'une class (structure de données)
+		(syntaxe class)
+		classe name {
+			name(void) // constructeur
+			-name(void) // destructeur
+		};
+
+		(syntaxe constructeur & destructeur)
+		name::name(void) {
+			// action de la "fonction"
+			return ;
+		}
+
+		name::-name(void) {
+			// action de la "fonction"
+			return ;
+		}
+		appel du constructeur (fonction) a la creation de la Class
+		appel du destructeur (fonction) a la destruction de la Class
+			N'ont pas de type de retour -> c'est un genre de protocole
+
+		(Dans le main)
+		int main() {
+			name instance; // variable instance de type name
+			return (0);
+		}
+
+		moule a gateau -> la Class
+		le gateau -> instance/varibale
+
+==================================================================================
+
+Attributs membre et fonctions membre :
+	attributs membre -> variable dans la class et qui sera utilise par une instance
+	(syntaxe class)
+		classe name {
+			int var1; attribut membre
+		
+			name(void) // constructeur
+			-name(void) // destructeur
+		
+			void fonction1(void); // fonction memebre
+		};
+
+		(fonction1)
+		type_de_retour nom_de_la_Class nom_de_la_fonction(argument_de_la_fonction) 
+		void name::fonction1(void) {
+			// action de la fonction
+			return ;
+		}
+		l'argument de la fonction a par defaut pointeur sur l'instance courante
+
+		(Dans le main)
+		int main() {
+			name instance; // variable instance de type name
+
+			instance.var1 = 42; // Variable de la Class
+			std::cout << "instance var1 : " << instance.var1 << std::endl;
+
+			instance.fonction1(); // fonction de la Class
+
+			return (0);
+		}
+
+==================================================================================
+
+Instance courante :
+	mot-clef "this"
+		pointeur qui pointe sur l'instance courante
+
+	(constructeur)
+	name::name(void) {
+		// action du constructeur
+		std::cout << "DESTRUCTEUR !!!" << std::endl;
+
+		this->var1 = 42;
+		std::cout << "instance var1 : " << this->var1 << std::endl;
+
+		this->fonction1()
+		
+		return ;
+	}
+
+==================================================================================
+
+Initialisation liste :
+	Le constructeur et le destructeur peuvent prendre des arguments.
+	
+	Exemple :
+		class name {
+			char	a1;
+			char	a2;
+			char	a3;
+
+			name(char p1, char p2, char p3);
+			-name(void);
+		}
+
+		(constructeur)
+		name::name(char p1, char p2, char p3) {
+			std::cout << "CONSTRUCTEUR !!!" << std::endl;
+
+			this->a1 = p1;
+			std::cout << "a1 : " << this->a1 << std::endl;
+
+			this->a2 = p2;
+			std::cout << "a2 : " << this->a2 << std::endl;
+
+			this->a3 = p3;
+			std::cout << "a3 : " << this->a3 << std::endl;
+			return ;
+		}
+
+	Deuxieme methode
+	Prenons une deuxieme class name2 :
+	Exemple :
+		class name2 {
+			char	a1;
+			char	a2;
+			char	a3;
+
+			name2(char p1, char p2, char p3);
+			-name2(void);
+		}
+	
+		(constructeur)
+		name2::name2(char p1, char p2, char p3) : a1(p1), a2(p2), a3(p3) {
+			std::cout << "a1 : " << this->a1 << std::endl;
+			std::cout << "a2 : " << this->a2 << std::endl;
+			std::cout << "a3 : " << this->a3 << std::endl;
+			return ;
+		}
+
+		Nouvelle syntaxe -> liste d'initialisation
+			Rapport avec des notions d'heritage (aussi)
+
+==================================================================================
+
+Const :
+	Rendre une varibale constante, avoir une constante -> fait la difference entre un programme solide et merdique (dans le long terme)
+
+	Exemple :
+
+	class name {
+			float const	pi;
+			int			qd;
+
+			name(float const f);
+			-name(void);
+
+			void fonction1(void) const;
+		}
+
+	Une constante peut etre definie seulement au moment de sont initialisation
+		-> Besoin du concepte precedent pour realiser l'initialisation d'un attribut de la Class name
+
+	name::name(float const f) : pi(f), qd(42) {
+		std::cout << "CONSTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	Ici on ne parle pas d'assignation de la valeur f a l'attribut pi mais plutot d'initialisation de l'attribut pi a la valeur f !!!
+
+	Deuxieme utilisation de const (important!!!)
+	(l.182)
+		const apres la fonction ???
+
+		la fonction en question :
+		void name::fonction(void const) {
+			std::cout << "FONCTION1 !!!" << std::endl;
+			std::cout << "pi : " << this->pi << std::endl;
+			std::cout << "qd : " << this->qd << std::endl;
+		}
+
+		Ce const derriere la fonction signifie au compilateur que cette fonction membre de modifiera jamais l'instance courante
+		Nulle part dans le code de cette fonction il n'y aura une assignation du type : this->qd = une_valeur (ne compilera pas)
+		
+			-> Faire plus de recherche sur ce point !!!
+
+==================================================================================
+
+Visibilitee
+
+	Exemple : 
+
+	class name {
+
+	public:
+			int	public_var;
+
+			name(float const f);
+			-name(void);
+
+			void public_function(void) const;
+
+	private:
+			int	private_var;
+
+			void private_function(void) const;
+		}
+
+	Pour controler l'encapssulation des membres de notre Class
+	Si les attributs et fonctions membre seront visible depuis l'exterieure de la Class ou non
+	Si le mot "private" precede les attributs et/ou les fonctions membres alors ils ne sont pas accessibles et visibles suelement depuis l'interieur de la Class
+	Si le mot "public" precede les attributs et/ou les fonctions membres alos ils sont aussi accessibles et visibles depuis l'exterieure de la Class
+
+	Donner un caractere reconnaissable aux attributs et aux fonctions membres privees afin de les reconnaitre plus facilement (lisibilite)
+		exemple : int _privateVAR = 42;
+
+	Suite exemple : 
+
+	name::name(void) {
+		std::cout << "CONSTRUCTEURS !!!" << std::endl;
+
+		this->public_var = 24;
+		std::cout << "public_var : " << this->public_var << std::endl;
+
+		this->private_var = 42;
+		std::cout << "private_var : " << this->private_var << std::endl;
+
+		this->public_function();
+		this->private_function();
+
+		return ;
+	}
+
+	void private_function(void) {
+		std::cout << "PRIVATE_FUNCTION !!!" << std::endl;
+	}
+
+	void public_function(void) {
+		std::cout << "PUBLIC_FUNCTION !!!" << std::endl;
+	}
+
+	Les attributs et fonctions membres seront accessibles dans le constructeur, car c'est une fonction membre de ma Class
+		Revoir a quoi s'applique cette exception !!! -> toutes les fonctions dans la Class peu importe leur position dans cette derniere ???
+	
+==================================================================================
+
+Class VS Stuctures :
+	Structure en C++ -> exemple
+
+		struct Name {
+			
+			int	var1;
+
+			Name(void);
+			-Name(void);
+
+			void	function1(void) const;
+		}
+
+		Meme syntaxe que pour les Classes
+		Meme fonctionnement 
+
+		Difference :
+		Sans preciser de visibilite la struct compile cependant ce n'est pas le cas pour la Class
+		La struct a un scoop par defaut public
+		La Class a un scoop par defaut prive
+		Donc une utilisation par defaut de la Class est plus pratique/utile
+
+==================================================================================
+
+Accesseurs :
+	Sont des petites fonction qui permettent la communication entre le pprogramme et l'utilisateur afin d'effectuer
+	diverses taches comme des verifications de donneees meme si ces dernieres sont dans la partie privee de la Class
+
+	Exemple :
+	Class Name {
+	
+	public:
+
+		Name(void);
+		-Name(void);
+
+		int		getfunction(void) const;
+		void	setfunction(int v);
+	
+	private:
+
+		int	_private;
+
+	}
+
+	Deux fonctions dans la zone public qui permettront d'acceder a la valeur de la zone prive (getfunction() & setfunction())
+
+==================================================================================
