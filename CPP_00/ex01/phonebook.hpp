@@ -4,9 +4,15 @@
 class PhoneBook {
 
 public: // ce qui doit être accessible de l'extérieur
-	double x,y;
-	double distance(const PhoneBook &P);
-	PhoneBook milieu(const PhoneBook &P);
+	
+	class Contact[8];
+	int		nb_contact;
+
+	PhoneBook(void); // constructeur
+	-PhoneBook(void); // destructeur
+
+	search_contact(void);
+	add_contact(void);
 
 private: // ce qui ne doit pas être accessible de l'extérieur
 

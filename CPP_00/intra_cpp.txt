@@ -255,11 +255,11 @@ Visibilitee
 		return ;
 	}
 
-	void private_function(void) {
+	void Name::private_function(void) {
 		std::cout << "PRIVATE_FUNCTION !!!" << std::endl;
 	}
 
-	void public_function(void) {
+	void Name::public_function(void) {
 		std::cout << "PUBLIC_FUNCTION !!!" << std::endl;
 	}
 
@@ -304,7 +304,7 @@ Accesseurs :
 		Name(void);
 		-Name(void);
 
-		int		getfunction(void) const;
+		int		getfunction(void) const; // const car va acceder seulement en lecture et pas en ecriture
 		void	setfunction(int v);
 	
 	private:
@@ -314,5 +314,157 @@ Accesseurs :
 	}
 
 	Deux fonctions dans la zone public qui permettront d'acceder a la valeur de la zone prive (getfunction() & setfunction())
+	Convention de nommage 
+		get + nom de l'accesseur // getfunction() 
+		set + nom de l'accesseur // setfunction()
+
+	Name::Name(void) {
+		std::cout << "CONSTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	Name::-Name(void) {
+		std::cout << "DESTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	int Name::getfunction(void) const {
+		return this->_private;
+	}
+
+	void Name::setfunction(int v) {
+		if (v >= 0)
+			set->_private = v
+		return ;
+	}
+
+	Dans le main ou ailleures ces fonctions fonctionnent comme des fonctions membres standards
+
+	Revoir les limites et fonctionnement de cette methode
+
+==================================================================================
+
+Comparaison :
+	Utilisation des fonctions membres pour ajouter une fonction compare() qui va nous permettre
+	de faire une comparaison structurelle sur deux instances et ainsi verifier une egalite ou non
+
+	Exemple :
+	Class Name {
+	
+	public:
+
+		Name(void);
+		-Name(void);
+
+		int		getfunction(void) const; // accesseur
+		int		compare(Name * other) const; // permet une comparaisonentre l'instance courante et l'instance passe en parametre
+	
+	private:
+
+		int	_private;
+
+	}
+
+	Name::Name(void) {
+		std::cout << "CONSTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	Name::-Name(void) {
+		std::cout << "DESTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	int Name::getfunction(void) const {
+		return this->_private;
+	}
+
+	void Name::compare(Name * other)const {
+		if (this->_private < other->getfunction())
+			return -1;
+		else if (this->_private > other->getfunction())
+			return 1;
+		return 0;
+	}
+
+	int main() {
+
+		Name instance1(42);
+		Name instance2(42);
+
+		// code 
+
+		return 0;
+	}
+
+	REVOIR !!!
+
+==================================================================================
+
+Attributs non-membre et fonctions non-membre :
+	Membre : existe au niveau de l'instance de notre Class
+		Chaque attribut est different dans chaque instance
+
+	Non-membre
+
+	Exemple :
+	Class Name {
+	
+	public:
+
+		Name(void);
+		-Name(void);
+
+		static int	getvar(void);
+
+	private:
+
+		static int	_private;
+
+	}
+
+	Name::Name(void) {
+		std::cout << "CONSTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	Name::-Name(void) {
+		std::cout << "DESTRUCTEUR !!!" << std::endl;
+		return ;
+	}
+
+	int Name::getvar(void) {
+		return Name::_private;
+	}
+
+	int Name::_private = 0; //initialisation de l'attribut non-membre
+
+	void function(void) {
+
+		Name instance;
+
+		std::cout << "Number of instances : " << Name::getvar() << std::endl
+
+		return ;
+	}
+
+	int main() {
+
+		std::cout << "Number of instances : " << Name::getvar() << std::endl;
+		function()
+		std::cout << "Number of instances : " << Name::getvar() << std::endl;
+
+		return 0;
+	}
+
+	Non-memre explique par un static
+
+	On ne peut jamais faire appel au pointeur this dans une fonction non-membre
+		-> Pas de pointeur par ddefaut
+
+
+==================================================================================
+
+Pointeur sur membre et pointeur sur fonction membre :
 
 ==================================================================================
