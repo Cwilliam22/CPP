@@ -22,6 +22,7 @@ int main(int argc, char** argv)
 	// OU --> std::cout << out << "\n";
 }
 
+
 // NOTES:
 // En C++, char peut être signé ou non selon le compilateur.
 // Donc argv[a][i] peut avoir une valeur négative.
