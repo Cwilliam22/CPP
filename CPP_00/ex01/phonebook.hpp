@@ -1,20 +1,32 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <cctype>
+
+#include "contact.hpp"
+
 class PhoneBook {
 
-public: // ce qui doit être accessible de l'extérieur
-	
-	class Contact[8];
-	int		nb_contact;
+public:
 
-	PhoneBook(void); // constructeur
-	-PhoneBook(void); // destructeur
+	PhoneBook(void);
+	~PhoneBook(void);
 
-	search_contact(void);
-	add_contact(void);
+	int	search_contact(void);
+	int	add_contact(void);
+	int	exit_phonebook(void);
+	int creating_contact(void);
 
-private: // ce qui ne doit pas être accessible de l'extérieur
+	void    getContactDetails(int index);
+
+
+	private:
+	Contact contacts[8];
+	int		nContact;
+	int	 	nextIndex;
 
 };
 

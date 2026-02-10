@@ -2,90 +2,17 @@
 #include <string>
 #include <cctype>
 
-// concat all arguments in uppercase
 
 int main(int argc, char** argv)
 {
 	std::string out;
 
-	for (int a = 1; a < argc; ++a)
+	for (int j = 1; j < argc; ++j)
 	{
-		if (a > 1)
+		if (j > 1)
 			out += ' ';
-		for (int i = 0; argv[a][i]; ++i)
-		{
-			out += static_cast<char>(std::toupper(static_cast<unsigned char>(argv[a][i])));
-			out += static_cast<char>(std::toupper(static_cast<unsigned char>(argv[a][i])));
-		}
+		for (int i = 0; argv[j][i]; i++)
+			out += std::toupper(argv[j][i]);
 	}
 	std::cout << out << std::endl;
-	// OU --> std::cout << out << "\n";
 }
-
-
-// NOTES:
-// En C++, char peut être signé ou non selon le compilateur.
-// Donc argv[a][i] peut avoir une valeur négative.
-
-// Les fonctions de <cctype> (toupper, tolower, etc.) doivent recevoir soit EOF, soit une valeur représentable par unsigned char.
-// Et que char est signé et contient un caractère accentué (é, ç, etc.) -> comportement indéfini.
-// Secure form : unsigned char safe = static_cast<unsigned char>(argv[a][i]);
-// toupper() prend un int en argument et retourne un int.
-// Donc on fait une double conversion
-// 
-
-/*
-Questions :
-Mes questions sont les suivantes : 
-Tu mets un static_cast mais est ce qu'un simple cast est possibles ?
-Comment caster en C++ ?
-Fait un parallèle avec le C (sur le question précédente).
-Pourquoi dans la syntaxe de cette ligne doit on mettre "std::" juste avant la fonction toupper ?
-Pourquoi on ne peut pas écrire directement : out += toupper(argv[a][i]); ?
-*/
-
-// Alternative C-style casts:
-// out += (char)std::toupper((unsigned char)argv[a][i]);
-// possible, mais pas recommandé
-
-/*
-2) Comment caster en C++ ?
-Les casts “modernes” en C++ sont :
-static_cast<T>(x) : conversion “normale” (numérique, pointeur compatible, etc.)
-const_cast<T>(x) : ajoute/enlève const / volatile (rare)
-reinterpret_cast<T>(x) : “bit-level”, très dangereux (bas niveau)
-dynamic_cast<T>(x) : pour polymorphisme (classes avec virtual), vérifie à l’exécution
-Dans ton cas (char → unsigned char → int → char), c’est static_cast qui convient.
-*/
-
-/*
-En C++, les casts C existent, mais ils peuvent faire “trop de choses à la fois” (ils peuvent se comporter comme static_cast + const_cast + reinterpret_cast selon le contexte), donc moins safe/moins clair.
-En C, tu n’as pas les 4 casts dédiés, donc le cast C est l’outil standard.
-*/
-
-/*
-C'est quoi cette notion de EOF pour la fonction toupper ?
-EOF = End Of File (fin de fichier).
-	Type : int
-	Valeur : négative (souvent -1, mais pas garanti)
-	EOF n’est pas un caractère.
-La fonction toupper (et les autres fonctions de <cctype>) peuvent recevoir en argument soit :
-	la valeur EOF
-	une valeur représentable par unsigned char (0 à 255 typiquement)
-Si la valeur est en dehors de ces plages (par exemple une valeur négative autre que EOF),le comportement est indéfini.
-Donc, si char est signé et contient un caractère accentué (é, ç, etc.),
-le cast en unsigned char évite un comportement indéfini.
-
-*/
-
-/*
-C'est quoi cette notion de namespace "std::" ?
-Sans le std::, le compilateur va chercher la fonction toupper dans le namespace global (espace de nom global).
-Or, la fonction toupper est définie dans le namespace std (standard).
-Donc, pour l'utiliser, il faut soit préfixer son nom par std::, soit utiliser une directive using (par exemple : using namespace std; ou using std::toupper;).
-Autre solution possible ?
-	using std::toupper;
-	out += toupper(...);
-*/
-
-// ++a vs a++

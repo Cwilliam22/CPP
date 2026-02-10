@@ -1,0 +1,10 @@
+
+
+Notion de fonction memebre non-statique
+
+New et delete => allocation dynamique
+New va réserver de la mémoire sur la heap et delete
+la supprimer une fois qu'elle n'est plus utile
+
+Un destructeur ne peut pas avoir de paramètre
+Pourquoi ??

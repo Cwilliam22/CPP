@@ -1,0 +1,39 @@
+Fonction roundf()
+
+    Prototypage -> float       roundf( float value );
+
+    Cette fonctions renvoie l'arrondi entier au plus proche
+    de la valeur spécifiée en paramètre.
+    Renvoie un type "float"
+
+    #include <cmath>
+
+(Functions of the exercice)
+
+(...)
+
+An overload of the insertion («) operator that inserts a floating-point representation
+of the fixed-point number into the output stream object passed as a parameter.
+
+opérateur -> symbole qui fait une action (+, - , =, etc)
+ces symboles sont des raccourcis pour des fonctions
+
+(<< -> dans notre cas)
+La fonction associé au symbole
+    -> std::ostream& operator<<(std::ostream&, float);
+
+"<<" ne sait pas comment gérer ma Class Fixed quand je la passe
+en argument au moment de l'affichage
+Ne trouve pas cette fonction : operator<<(std::ostream&, Fixed);
+Donc il faut implémenter cette fonction autrement il y aura un
+problème lors de la compilation
+    -> aucun opérateur << ne correspond à ces opérandes
+
+Surcharge d'opérateur c'est dire au compilateur comment utiliser
+l'opérateur avec un nouveau type.
+
+Objectif afficher Fixed comme un float
+
+Sans cette fonction c'est comme si on donnait la Class Fixed à lire sur la sortie standard
+
+    

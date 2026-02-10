@@ -1,0 +1,40 @@
+
+Pointeur sur fonction membre :
+
+C'est quoi ?
+À quoi ça sert ?
+Comment l'utiliser correctement ?
+
+Chaque fonction à une adresse mémoire, comme les variables.
+On peut stocker l’adresse d’une fonction.
+On peut appeler une fonction via cette adresse.
+
+Un pointeur sur fonction est une variable qui contient l’adresse d’une fonction.
+
+Exemple : 
+
+(Fonction)
+int add(int a, int b)
+{
+    return a + b;
+}
+
+(Pointeur vers cette fonction)
+int (*f)(int, int);
+
+(Liaison du pointeur à la fonction)
+f = &add;   // le & est optionnel
+
+(Appeler la fonction via le pointeur)
+int result = f(2, 3);   // résultat = 5
+
+
+Dans le cas de l'exercice il faut un tableau de 4 fonctions appartenant à notre Class Harl
+    void    (Harl::*funcs[4])()
+    Zéro paramètre en entrée et rien en sortie
+    ::* -> pointeur sur fonctions appartenant à Harl 
+    Donne adresse d’une fonction à l’intérieur de la Class Harl
+    Tableau de 4 pointeurs vers des fonctions de Harl
+
+    void (Harl::*functions[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    Chaque élément du tableau donnera l'adresse d'une méthode/fonction de la Class Harl

@@ -1,0 +1,2 @@
+
+À partir d'un fichier log et .hpp, recréer le fichier perdu de l'exercice. -> Fichier .cpp

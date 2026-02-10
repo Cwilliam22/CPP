@@ -1,0 +1,18 @@
+
+Allocation dynamique de la mémoire
+
+But : Allocation dynamique d'un tableau d'objets.
+
+Allouer N fois un élément d'une certaine taille
+La horde de zombie la taille glopbale à prendre sur la heap (en allocation dynamique).
+
+Tous les zombies ont le même nom -> name.
+Un name pour les N zombie.
+
+Zombie* horde = new Zombie[N];
+
+Fait N fois l'allocation pour un objet Zombie (sur la heap).
+Retourne l'adresse du premier zombie et bien sur appel N fois le constructeur de la Class Zombie.
+
+On peut avoir autant de constructeur que nécessaire.
+

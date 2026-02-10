@@ -1,0 +1,51 @@
+
+Implémentation de fonction opérateur pour interpréter
+la Class Fixed qui va être envoyé à ces opérateur. 
+
+Dans ces fonctions
+    -> 6 opérateurs de comparaison (>, <, >=, <=, ==, !=)
+    -> 4 oprérateurs arithmétique (+, -, *, /)
+
+Quelle est la logique pour avoir la bonne syntaxe lors de
+l'écriture des prototypes des ces fonctions ?
+
+Dans les exercices du module passé nous avons écris deux
+choses ressemblant fortememt à ce qu'on nous demande dans
+cette exercice.
+
+    1. std::ostream& operator<<(std::ostream& os, const Fixed& f);
+        std::ostream& operator<<(std::ostream& os, const Fixed& f)
+        {
+            os << f.toFloat();
+            return os;
+        }
+
+        -> Nom de la fonction : operator<<
+        -> Liée au symbole "<<"
+        -> La fonction retourne une référence sur un flux de sortie (std::ostream&).
+        -> Permet d'écrire ça : std::cout << a << std::endl;
+        -> Retourne un flux
+        -> Le "&" dans std::ostream& os, signifie qu'on ne retourne
+            pas une copie du flux mais qu'on travaille sur le même flux
+        -> Idem pour le "&" dans const Fixed& f
+
+    2.
+
+Opérateurs de comparaison
+    On cherche à comprarer la valeur qui nous intéresse de la class A et B
+
+Opérateurs arithmétique
+    On cherche à sortir un résultat d'une opération de deux obj entre eux
+
+Opérateurs increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
+    (post-increment et post-decrement)
+    exemple : a++
+    aucun argument dans cette fonction juste en donne +1 ou -1 à l'obj
+
+    (pre-increment et pre-decrement)
+    exemple : ++a
+    doit signifier qu'il s'agit d'une pre-incrementation/pre-decrementation
+
+   
+Habitudes à prendre : 
+    - Toutes les fonctions qui ne change pas doivent être mis en const

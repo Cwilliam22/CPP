@@ -1,0 +1,55 @@
+
+Divers manipulations de files 
+
+Librairie fstream
+#include <fstream>
+
+3 classes inlcude dans la librairie fstream
+	ofstream -> Pour créer et lire un fichier
+	ifstream -> Pour lire depuis le fichier
+	fstream	-> Une combinaison de ofstream et ifstream: créer, lire, et écrire sur un fichier
+
+Exemple :
+	// Créer et ouvrir un fichier texte
+	std::ofstream MyFile("filename.txt");
+
+	// Écrire dans le fichier
+	std::MyFile << "Files can be tricky, but it is fun enough!";
+
+	// Fermer le fichier
+	std::MyFile.close();
+
+Prendre le contenu d'un fichier
+Fonction readFile
+
+
+Parser le contenu à la recherche de la string s1
+Remplacer par la string s2
+
+Comment manipule-t-on un fichier en C++ ? :
+	- Utilisation des streams
+		std::ifstream : lire un fichier
+		std::ofstream : écrire dans un fichier
+	- Etape pour lire
+		open("nom") -> ouvre le fichier
+		std::ifstream file("nom") -> créer et ouvre un fichier
+		Vérifier si le fichier est ouvert -> is_open()
+		Lire -> getline ou ...
+		Fermer le fichier -> close()
+	- Fonctions à retenir :
+		is_open()
+		open(std::string filename)
+		getline(in, out)
+		close()
+		find(std::string s1, size_t pos)
+		length()
+		insert(size_t pos, std::string s1)
+		erase(size_t pos, size_t length)
+
+Peut-on mettre une fonction suivis de const si cette fonction n'est pas membre d'une class ?
+Est ce que ça a du sens de faire ça ?
+Si oui pourquoi ?
+Si non pourquoi ?
+
+Regarder l'accessibilité des données à travers les class
+Comment accéder ou ne pas acéder à des variables privées ?

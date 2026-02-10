@@ -1,10 +1,10 @@
-NAME = PhoneBook
+NAME = Replace
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = phonebook.cpp contact.cpp main.cpp
+SOURCES = main.cpp replace.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

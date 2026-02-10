@@ -1,0 +1,28 @@
+
+But : Manipulation du reférencement 
+
+std::string str = "HI THIS IS BRAIN";
+Initialisation d'une string simple en C++
+
+std::string* stringPTR = &str;
+Pointeur sur l'adresse d'une string
+
+std::string& stringREF = str;
+Reference vers cette variable
+La référence se comporte comme un alias : c’est un autre nom pour str
+
+std::cout << "Address of str: " << &str << std::endl;
+std::cout << "Address held by stringPTR: " << stringPTR << std::endl;
+std::cout << "Address held by stringREF: " << &stringREF << std::endl; 	(Adresse de l'objet reférencé)
+Ces trois output donnent tous l'adresse de la string mais par des biais différents
+
+std::cout << "Value of str: " << str << std::endl;
+Contenu de la string avec un simple appel à la variable string str
+
+std::cout << "Value pointed to by stringPTR: " << *stringPTR << std::endl; (Valeur pointé par le pointeur = déréférencement)
+Contenu de la str
+
+std::cout << "Value pointed to by stringREF: " << stringREF << std::endl;
+
+&str l'adresse de str correspond à son emplacement dans la mémoire
+

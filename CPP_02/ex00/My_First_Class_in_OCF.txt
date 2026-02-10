@@ -1,0 +1,91 @@
+
+Fixed-point numbers :
+
+C'est quoi ?
+C'est une notation qui permet de représenter les entiers et les float de la même manière.
+
+Décaler le point binaire vers la gauche équivaut à diviser le nombre par deux.
+(Exemple)
+53
+1   1	0	1	0	1	.	0	0	0
+
+26.5
+0	1	1	0	1	0	.	1	0	0
+
+À l'inverse, déplacer le point binaire vers la droite multiplie le nombre par deux.
+
+Pour définir conceptuellement un type de point fixe (point binaire), deux paramètres sont nécessaires :
+    - Largeur de la représentation numérique
+    - Position du point binaire dans le nombre
+
+(Notation)
+notation fixée<w,b> 
+[w] désigne le nombre de bits utilisés dans son ensemble (la largeur d'un nombre).
+[b] désigne la position du point binaire comptant à partir du bit le moins significatif (comptant à partir de 0).
+
+(Exemple)
+    fixe<8,3> 
+    Représente un nombre de virgule fixe de 8 bits, dont 3 bits droits sont fractionnaires.
+        0	0	0	1	0   .	1	1	0
+
+    00010.110 (en base de 2)
+    =  1 * 2^1 + 0 * 2^0 + 1 * 2^(-1) + 1 * 2^(-2)
+
+    = 2 + 0,5 + 0,25
+
+    = 2,75
+
+(Formule)
+    Nombre réel = entier stocké / 2^fractionalBits (en base 2)
+    Donc
+    entier_stocké = nombre_reel × 2^fractionalBits (en base 2)
+        Exemple
+            10.23 = 1023 * 10^-2 (en base 10)
+
+(Utilisation du bit-shifting)
+    x << 1 -> x × 2
+    x << n -> x × 2^n
+    intValue << _fractionalBits
+
+    Fixed_point_number / 2^_fractionalBits = value_begin
+
+
+
+
+
+
+
+(Nombres négatifs)
+    (Complément de deux)
+        1010
+        1 -> Signifie que le nombre est négatif
+        On switch tous chiffres -> 0101
+        On additionne 1 à ça -> 110 -> 6
+        ça combiné au 1 présent devant -> -6
+
+        -> Méthode de complément à deux
+
+        0111
+        0-> Signifie que le nombre est positif
+        Pas besoin de complément à deux -> interprétation normal
+
+        Pour écrire un nombre négatif en binaire :
+        On prend son positif en base deux.
+        On inverse tout les bits.
+        On ajoute un.
+
+
+Qu'est ce qu'un constructeur de copy ?
+    -> Sert à créer un nouvel objet à partir d'un objet existant.
+    -> Appeler lors de la création d'un objet.
+    -> Signature type : Fixed(const Fixed& other);
+        - Le premier Fixed montre que c'est un constructeur
+        - const pour ne pas modifier l'objet source
+        - & notation pour ne pas appeler la constructeur Fixed en récursive
+        - other est l'objet source
+
+
+Qu'est ce qu'un copy assignment operator overload ?
+    -> Sert à copier le contenu d’un objet existant dans un autre objet déjà existant.
+    -> Signature type : Fixed &Fixed::operator=(const Fixed &src)
+        - 

@@ -1,0 +1,133 @@
+Orthodox Canonical Form (OCF)
+    • Default constructor
+    • Copy constructor
+    • Copy assignment operator
+    • Destructor
+
+
+Orthodox Canonical Form
+    1. Default Constructor
+    2. Parameterized Constructor
+    3. Copy Constructor
+    4. Assignment Operator
+    5. Destructor
+
+(Default Constructor)
+Le constructeur par défaut est une fonction membre
+spéciale dans une classe qui initialise un objet avec
+des valeurs par défaut pendant l'instanciation de l'objet.
+
+        class Human {
+        private:
+            ...
+        public:
+            Human() : _name("Default Name"), _age(0) {
+                std::cout << "Human Default Constructor Called!" << std::endl;
+            }
+            ...
+        };
+
+(Parameterized Constructor)
+Le constructeur paramétré initialise un objet avec des
+valeurs spécifiques fournies comme arguments pendant
+l'instantiation de l'objet.
+
+        class Human {
+        private:
+            ...
+        public:
+            Human(const std::string &name, int age) : _name(name), _age(age) {
+                std::cout << "Human Parameterized Constructor Called!" << std::endl;
+            }
+            ...
+        };
+
+(Copy Constructor)
+Le constructeur de copie initialise un nouvel objet en
+tant que copie d'un objet existant. Ceci est utile
+lorsque vous passez un objet par valeur ou lorsque
+nous devons dupliquer un objet.
+
+        class Human {
+        private:
+            ...
+        public:
+            Human(const Human &other) : _name(other._name), _age(other._age) {
+                std::cout << "Human Copy Constructor Called!" << std::endl;
+            }
+            ...
+        };
+
+(Assignment Operator)
+L'opérateur d'affectation attribue la valeur d'un
+objet à un autre objet déjà existant. Ici, nous
+devons gérer la copie approfondie et l'auto-affectation.
+
+        class Human {
+        private:
+            ...
+        public:
+            Human &operator=(const Human &other) {
+                if (this != &other) {
+                    _name = other._name;
+                    _age = other._age;
+                }
+                std::cout << "Human Assignment Operator Called!" << std::endl;
+            
+                return (*this); //Required for chaining
+            }
+            ...
+        };
+
+(Destructor)
+Le Destructor est appelé lorsqu'un objet sort de la portée
+ou est explicitement supprimé. Il est utilisé pour nettoyer
+des ressources telles que la mémoire ou les poignées de
+fichiers.
+
+        class Human {
+        private:
+            ...
+        public:
+            Human(const std::string& name, int age) : _age(age) {
+                _name = new std::string(name);  // Dynamic Memory Allocation
+            }
+        
+            ~Human() {
+                std::cout << "Human Destructor Called!" << std::endl;
+                delete _name;  // Clean Up
+            }
+            ...
+        };
+
+
+
+class Sample
+{
+public:
+    Sample();                              // 1
+    Sample(const Sample& other);           // 2
+    Sample& operator=(const Sample& other);// 3
+    ~Sample();                             // 4
+};
+
+Sample::Sample() {}
+
+Sample::Sample(const Sample& other)
+{
+    *this = other;
+}
+
+Sample& Sample::operator=(const Sample& other)
+{
+    if (this != &other)
+    {
+        // copier les attributs
+    }
+    return *this;
+}
+
+Sample::~Sample() {}
+
+https://riceset.com/C++/The-Orthodox-Canonical-Class-Form
+42 global approach on AI.

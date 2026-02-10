@@ -1,0 +1,25 @@
+But : Manipulation des references
+
+Notion de type :
+
+Fonction suivie de const :
+Signifie que la fonction ne modifiera pas l’objet sur lequel elle est appelée
+Une fonction doit être const si elle se contente de lire l’objet.
+Notion importante dans cette exercice car on lit beaucoup de donnés sans les changer.
+
+Est ce qu'une focntion membre peut lire une variable privé ??
+
+Y a t il besoin d'un constructeur et d'un destructeur pour une class ?
+
+Pourquoi je ne peux pas faire ça : 
+void HumanB::setWeapon(Weapon& weapon) : _weapon(&weapon)
+{
+    return ;
+}
+
+et que je dois faire ça : 
+void HumanB::setWeapon(Weapon& weapon)
+{
+    _weapon = &weapon;
+    return ;
+}
