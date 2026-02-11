@@ -8,3 +8,5 @@ la supprimer une fois qu'elle n'est plus utile
 
 Un destructeur ne peut pas avoir de paramètre
 Pourquoi ??
+
+Différence Stack Heap voir en détail !!!

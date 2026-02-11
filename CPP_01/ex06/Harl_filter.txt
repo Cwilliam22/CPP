@@ -1,0 +1,44 @@
+
+Notion de filtrage 
+
+Fonction switch 
+
+C'est quoi ?
+    Le switch case est une alternative essentielle à l’utilisation
+    des structures conditionnelles classiques comme if-else.
+
+Les avantages ?
+    Le nombre de conditions est élevé et les options sont mutuellement
+    exclusives.
+    Une meilleure lisibilité est recherchée, car les instructions sont
+    regroupées sous un format plus formel et systématique.
+
+Comment fonctionne la syntaxe du Switch Case ?
+    (Exemple)
+    int choix = 2;
+    switch (choix) {
+        case 1:
+            std::cout << "Cas 1 sélectionné" << std::endl;
+            break;
+        case 2:
+            std::cout << "Cas 2 sélectionné" << std::endl;
+            break;
+        default:
+            std::cout << "Aucun cas correspondant" << std::endl;
+    }
+
+    Ces blocs se terminent généralement par un break pour empêcher
+    le comportement de passage involontaire (fallthrough).
+
+    Le "fallthrough" se produit lorsque l’absence d’un break entraîne
+    l’exécution de plusieurs blocs case. Bien que ce comportement
+    soit intentionnel dans certains cas, il peut conduire à des
+    erreurs logiques.
+
+    #include <iostream>
+
+    switch prend un int !!!
+
+Source : 
+    - https://blog.alphorm.com/comprendre-switch-case-cpp
+    - https://www.w3schools.com/cpp/cpp_switch.asp

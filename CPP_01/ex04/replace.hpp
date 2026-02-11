@@ -8,6 +8,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <fstream>
+
 class Replace 
 {
     private:
@@ -25,5 +27,7 @@ class Replace
         bool    writeFileContent();
 
 };
+
+bool fichierExiste(const std::string& nomFichier);
 
 #endif
