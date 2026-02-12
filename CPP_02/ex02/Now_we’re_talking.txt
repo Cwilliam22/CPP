@@ -38,14 +38,55 @@ Opérateurs arithmétique
     On cherche à sortir un résultat d'une opération de deux obj entre eux
 
 Opérateurs increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
-    (post-increment et post-decrement)
-    exemple : a++
-    aucun argument dans cette fonction juste en donne +1 ou -1 à l'obj
+
+    Comment différencier la simple incrémentation de la post incrémentation ?
+    Besoin d'un moyen de distinguer les deux prototypes
 
     (pre-increment et pre-decrement)
+    (post-increment et post-decrement)
     exemple : ++a
-    doit signifier qu'il s'agit d'une pre-incrementation/pre-decrementation
+    aucun argument dans cette fonction juste en donne +1 ou -1 à l'obj
+
+    Logique :
+        (Exemple)
+        a = 5;
+        ++a;
+
+        Augmenter 5 de 1 -> devient 6
+        et renvoie 6
+
+        Ajoute ou enlève 1 avant le renvoie de la variable a
+
+    (post-increment et post-decrement)
+    exemple : a++
+    Besoin d'un moyen de distinguer du prototype de pre-incrémentation
+        -> int dans la fonction -> 
+        -> Le int devant n’est jamais utilisé
+            Il n’a pas de nom
+            Il sert uniquement de marqueur syntaxique
+            C'est une convention
+            Le compilateur passe automatiquement zéro comme paramètre
+
+    Logique :
+        (Exemple)
+        a = 5;
+        a++;
+
+        reviens à copier 5
+        augmenter 5 de 1 -> devient 6
+        et renvoie la copie de 5
+
+        Ajoute ou enlève 1 après que la variable ait été renvoyé
+        Autrement dit ça renvoie une ancienne valeur qui n'est plus celle de notre variable
 
    
 Habitudes à prendre : 
     - Toutes les fonctions qui ne change pas doivent être mis en const
+
+Autres : 
+    - This donne l'adresse de l'objet 
+    - this->_fixedPointValue
+        -> À l'adresse de this il y a la variable _fixedPointValue
+    - *this renvoie donc l'objet lui-même
+    - const dans le prototypage des fonctions veut dire
+        -> Cette fonction ne modifie pas l'objet courant

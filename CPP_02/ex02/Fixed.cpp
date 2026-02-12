@@ -102,28 +102,28 @@ bool Fixed::operator!=(const Fixed& obj) const {
 
 // 4 arithmetic operators
 // opérateur (+)
-Fixed &Fixed::operator+(const Fixed& obj) {
+Fixed Fixed::operator+(const Fixed& obj) const {
     Fixed result;
     result.setRawBits(this->_fixedPointValue + obj._fixedPointValue);
     return (result);
 }
 
 // opérateur (-)
-Fixed &Fixed::operator-(const Fixed& obj) {
+Fixed Fixed::operator-(const Fixed& obj) const {
     Fixed result;
     result.setRawBits(this->_fixedPointValue - obj._fixedPointValue);
     return (result);
 }
 
 // opérateur (*)
-Fixed &Fixed::operator*(const Fixed& obj) {
+Fixed Fixed::operator*(const Fixed& obj) const{
     Fixed result;
     result.setRawBits(this->_fixedPointValue * obj._fixedPointValue);
     return (result);
 }
 
 // opérateur (/)
-Fixed &Fixed::operator/(const Fixed& obj) {
+Fixed Fixed::operator/(const Fixed& obj) const {
     Fixed result;
     result.setRawBits(this->_fixedPointValue / obj._fixedPointValue);
     return (result);
@@ -131,27 +131,38 @@ Fixed &Fixed::operator/(const Fixed& obj) {
 
 // 4 increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
 
-// opérateur (++)
-Fixed &Fixed::operator++(const Fixed& obj) {
-    Fixed result;
-    return (result);
+// opérateur post (++)
+Fixed Fixed::operator++(int) {
+    Fixed old = *this;
+    this->_fixedPointValue += 1;
+    return (old);
 }
 
-// opérateur (--)
-Fixed &Fixed::operator--(const Fixed& obj) {
-    Fixed result;
-    return (result);
+// opérateur pre (++)
+Fixed &Fixed::operator++() {
+    _fixedPointValue += 1;
+    return (*this);
 }
-Fixed &Fixed::operator/(const Fixed& obj) {
-    Fixed result;
-    result.setRawBits(this->_fixedPointValue / obj._fixedPointValue);
-    return (result);
+
+// opérateur post (--)
+Fixed Fixed::operator--(int) {
+    Fixed old = *this;
+    this->_fixedPointValue -= 1;
+    return (old);
 }
-Fixed &Fixed::operator/(const Fixed& obj) {
-    Fixed result;
-    result.setRawBits(this->_fixedPointValue / obj._fixedPointValue);
-    return (result);
+
+// opérateur pre (--)
+Fixed &Fixed::operator--() {
+    _fixedPointValue -= 1;
+    return (*this);
 }
+
+static Fixed& min(Fixed& obj1, Fixed& obj2);
+static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
+static Fixed& max(Fixed& obj1, Fixed& obj2);
+static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
+
+
 
 
 // if (value > MAX) value = MAX;

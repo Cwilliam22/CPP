@@ -39,29 +39,22 @@ class Fixed
         bool operator!=(const Fixed& obj) const;
 
         // 4 arithmetic operators
-        Fixed& operator+(const Fixed& obj);
-        Fixed& operator-(const Fixed& obj);
-        Fixed& operator*(const Fixed& obj);
-        Fixed& operator/(const Fixed& obj);
+        Fixed operator+(const Fixed& obj) const;
+        Fixed operator-(const Fixed& obj) const;
+        Fixed operator*(const Fixed& obj) const;
+        Fixed operator/(const Fixed& obj) const;
 
         // 4 operators increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement)
         Fixed& operator++();
+        Fixed operator++(int);
         Fixed& operator--();
-        Fixed& operator++(int);
-        Fixed& operator--(int);
+        Fixed operator--(int);
 
-        // overloaded functions
-
-        /*
-        A static member function min that takes two references to fixed-point numbers as
-        parameters, and returns a reference to the smallest one.
-        • A static member function min that takes two references to constant fixed-point
-        numbers as parameters, and returns a reference to the smallest one.
-        • A static member function max that takes two references to fixed-point numbers as
-        parameters, and returns a reference to the greatest one.
-        • A static member function max that takes two references to constant fixed-point
-        numbers as parameters, and returns a reference to the greatest one.
-        */
+        // overloaded functions (min and max)
+        static Fixed& min(Fixed& obj1, Fixed& obj2);
+        static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
+        static Fixed& max(Fixed& obj1, Fixed& obj2);
+        static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
 
 };
 
