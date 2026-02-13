@@ -1,0 +1,22 @@
+Debut de notion d'heritage 
+
+(exemple)
+
+class Point
+{
+	private:
+        Fixed const _x;
+        Fixed const _y;
+
+	public:
+		Point();
+		Point(const float x, const float y);
+        Point(const Point &src);
+		Point& operator=(const Point &src);
+		Point(const int intValue);
+		Point(const float floatValue);
+		~Point();
+	
+};
+
+La Class Point herite de la Class Fixed
