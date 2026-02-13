@@ -12,23 +12,23 @@
 
 class Fixed 
 {
-    private:
-        int                 _fixedPointValue;
-        static const int    _fractionalBits = 8;
+	private:
+		int                 _fixedPointValue;
+		static const int    _fractionalBits = 8;
 
-    public:
-        Fixed();
-        Fixed(const Fixed &src);
-        Fixed& operator=(const Fixed &src);
-	    Fixed(const int intValue);
-        Fixed(const float floatValue);
-	    ~Fixed();
+	public:
+		Fixed();
+		Fixed(const Fixed &src);
+		Fixed& operator=(const Fixed &src);
+		Fixed(const int intValue);
+		Fixed(const float floatValue);
+		~Fixed();
 
-        int toInt(void) const;
-        float toFloat(void) const;
+		int toInt(void) const;
+		float toFloat(void) const;
 
-        int getRawBits(void) const;
-        void setRawBits(int const raw);
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
 
 };
 

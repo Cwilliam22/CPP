@@ -79,7 +79,33 @@ Opérateurs increment/decrement (pre-increment and post-increment, pre-decrement
         Ajoute ou enlève 1 après que la variable ait été renvoyé
         Autrement dit ça renvoie une ancienne valeur qui n'est plus celle de notre variable
 
-   
+Problemes rencontre :
+
+    - La division et la multiplication de display pas de resultat correcte.
+        Pourquoi ?
+        On ne peut pas prendre les valuer brut a diviser et multiplier si ces
+        derniers sont des float.
+        Ce qui fonctionne '+' et '-' :
+            (A * 256) + (B * 256) = (A + B) * 256
+        Raison :
+            (A * 256) * (B * 256) = A * B * 256 * 256 -> faut / 256
+        La multiplication est associative et commutative.
+            (A * 256) / (B * 256) = A / B -> faut * 256
+
+(Pas un probleme mais une remarque sur le sujet main etc) 
+    - Les 4 operateurs d'incrementation et decrementation ne renoie pas le bon resultat
+        Pourquoi ?
+        J ajoute +1 ou moins -1 a la variable _fixedPointValue ce qui est faux
+        _fixedPointValue est un int mais n'est pas une valeur reel  (n'est pas le nombre)
+        -> C’est le nombre multiplié par 256
+        Par consequent mon erreur est la suivante :
+        (exemple)
+        _fixedPointValue = 768 (3 * 256)
+        Du coup _fixedPointValue += 1 donne 767
+        La valeur reel ne sera donc pas egal a 4 mais a qqch entre deux
+        Il faudrait multiplier le 1 par 256 en passant pas un bit shiffting pour garder un terme generique
+
+
 Habitudes à prendre : 
     - Toutes les fonctions qui ne change pas doivent être mis en const
 
