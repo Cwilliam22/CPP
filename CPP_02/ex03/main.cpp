@@ -1,88 +1,43 @@
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void )
+int main(void)
 {
-	///*
-	// Main of the subject
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	//*/
+	// Points of the triangle
+	Point a(0, 0);
+	Point b(10, 0);
+	Point c(5, 10);
 
-	/*
-	// My tests
+	// Points to test
+	// Inside the triangle
+	Point point1(5, 5);
+	Point point2(5, 3);
+	Point point3(4, 4);
 
-	// // 6 comparison operators
-	std::cout << "---------------- 6 comparison operators ---------------" << std::endl;
-	Fixed a(10.5f);
-	Fixed b(2.0f);
-	Fixed c(5.0f);
-	std::cout << "a" << " = " << a << "  "; // 10.5
-	std::cout << "b" << " = " << b << "  "; // 2.0
-	std::cout << "c" << " = " << c << std::endl << std::endl; // 5.0
+	// Outside the triangle
+	Point point4(15, 5);
+	Point point5(-1, 0);
+	Point point6(5, 11);
 
-	std::cout << "a > b" << " = " << (a > b) << std::endl; // 1
-	std::cout << "a < b" << " = " << (a < b) << std::endl; // 0
-	std::cout << "a >= b" << " = " << (a >= b) << std::endl; // 1
-	std::cout << "a <= b" << " = " << (a <= b) << std::endl; // 0
-	std::cout << "a == b" << " = " << (a == b) << std::endl; // 0
-	std::cout << "a != b" << " = " << (a != b) << std::endl << std::endl; // 1
+	// On the edge of the triangle
+	Point point7(5, 0);
+	Point point8(2.5f, 5);
+	Point point9(7.5f, 5);
 
-	// arithmetic operators
-	std::cout << "---------------- 4 arithmetic operators ---------------" << std::endl;
-	std::cout << "a" << " = " << a << "  "; // 10.5
-	std::cout << "b" << " = " << b << "  "; // 2.0
-	std::cout << "c" << " = " << c << std::endl << std::endl; // 5.0
 
-	std::cout << "a / b" << " = " << a / b << std::endl; // 5.25
-	std::cout << "a * b" << " = " << a * b << std::endl; // 21.0
-	std::cout << "a + b" << " = " << a + b << std::endl; // 12.5
-	std::cout << "a + c" << " = " << a + c << std::endl; // 15.5
-	std::cout << "a - c" << " = " << a - c << std::endl << std::endl; // 5.5
+	std::cout << "--------- TEST BSP ---------" << std::endl << std::endl;
 
-	
-	// 4 increment/decrement (pre-increment and post-increment, pre-decrement and post-decrement) operators
-	std::cout << "------------- 4 increment/decrement operators ---------" << std::endl;
-	std::cout << "a" << " = " << a << "  "; // 10.5
-	std::cout << "b" << " = " << b << "  "; // 2.0
-	std::cout << "c" << " = " << c << std::endl << std::endl; // 5.0
+	std::cout << "Inside the triangle:" << std::endl << std::endl;
+	std::cout << "Point1 is " << (bsp(a, b, c, point1) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point2 is " << (bsp(a, b, c, point2) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point3 is " << (bsp(a, b, c, point3) ? "inside" : "outside") << " the triangle." << std::endl << std::endl;
+	std::cout << "Outside the triangle:" << std::endl << std::endl;
+	std::cout << "Point4 is " << (bsp(a, b, c, point4) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point5 is " << (bsp(a, b, c, point5) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point6 is " << (bsp(a, b, c, point6) ? "inside" : "outside") << " the triangle." << std::endl << std::endl;
+	std::cout << "On the edge of the triangle:" << std::endl << std::endl;
+	std::cout << "Point7 is " << (bsp(a, b, c, point7) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point8 is " << (bsp(a, b, c, point8) ? "inside" : "outside") << " the triangle." << std::endl;
+	std::cout << "Point9 is " << (bsp(a, b, c, point9) ? "inside" : "outside") << " the triangle." << std::endl << std::endl;
 
-	std::cout << "a++" << " = " << a++ << std::endl; // 10.5
-	std::cout << "a" << " = " << a << std::endl; //
-	std::cout << "++a" << " = " << ++a << std::endl; // 12.5
-	std::cout << "a" << " = " << a << std::endl; // 12.5
-	std::cout << "a--" << " = " << a-- << std::endl; // 12.5
-	std::cout << "a" << " = " << a << std::endl; // 11.5
-	std::cout << "--a" << " = " << --a << std::endl; // 10.5
-	std::cout << "a" << " = " << a << std::endl; // 10.5
-
-	// overloaded functions (min and max)
-	std::cout << "----------- overloaded functions (min and max) --------" << std::endl;
-	std::cout << "a" << " = " << a << "  "; // 10.5
-	std::cout << "b" << " = " << b << "  "; // 2.0
-	std::cout << "c" << " = " << c << std::endl << std::endl; // 5.0
-
-	std::cout << "min(a, b)" << " = " << Fixed::min(a, b) << std::endl; // 2.0
-	std::cout << "min(a, c)" << " = " << Fixed::min(a, c) << std::endl; // 5.0
-	std::cout << "max(a, b)" << " = " << Fixed::max(a, b) << std::endl; // 10.5
-	std::cout << "max(a, c)" << " = " << Fixed::max(a, c) << std::endl; // 10.5
-
-	*/
+	return (0);
 }
-
-/*
-Output (ex02):
-0
-0.00390625
-0.00390625
-0.00390625
-0.0078125
-10.1016
-10.1016
-*/

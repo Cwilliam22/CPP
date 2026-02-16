@@ -11,10 +11,14 @@ Point::~Point() {
 
 Point &Point::operator=(const Point &src)
 {
-	if (this != &src)
-	{
-		this->_x._fixedPointValue = src._x._fixedPointValue;
-		this->_y._fixedPointValue = src._y._fixedPointValue;
-	}
+	(void)src;
 	return (*this);
+}
+
+Fixed Point::getX() const {
+	return (this->_x);
+}
+
+Fixed Point::getY() const {
+	return (this->_y);
 }

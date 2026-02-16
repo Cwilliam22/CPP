@@ -13,16 +13,16 @@
 class Fixed 
 {
 	private:
-		int                 _fixedPointValue;
-		static const int    _fractionalBits = 8;
+		int					_fixedPointValue;
+		static const int	_fractionalBits = 8;
 
 	public:
-		Fixed();
-		Fixed(const Fixed &src);
-		Fixed& operator=(const Fixed &src);
-		Fixed(const int intValue);
-		Fixed(const float floatValue);
-		~Fixed();
+		Fixed(); // Default constructor
+		Fixed(const Fixed &src); // Copy constructor
+		Fixed& operator=(const Fixed &src); // Copy assignment operator
+		Fixed(const int intValue); // Int constructor
+		Fixed(const float floatValue); // Float constructor
+		~Fixed(); // Destructor
 
 		int toInt(void) const;
 		float toFloat(void) const;

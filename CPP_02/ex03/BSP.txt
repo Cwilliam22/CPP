@@ -20,3 +20,24 @@ class Point
 };
 
 La Class Point herite de la Class Fixed
+
+
+Comment savoir si un point appartient a un triangle ?
+
+3 points (les 3 sommets du triangle)
+1 point a verifier
+
+Calculer les 3 droites que l'on peut former avec les 3 points du triangle.
+Tester/Calculer si les points sont a gauches ou a droites de la droite.
+	Si sur les 3 droites les points est a droites alors le point appartient au triangle
+	Attention au sens des droites pour ne pas fausser le resultat.
+Comment savoir si un point est a gauche ou a droite d'une droite ?
+	Calculer l'air du parallelogramme forme par les deux points du triangle et par le point exterieur.
+		Si l'air est positive le point est a droite.
+		Si l'air est negative le point est a gauche.
+
+	Comment calculer l'air d'un parallelogramme ?
+		Calculer le déterminant
+		L'aire d'un parallélogramme dans le plan correspond à la valeur absolue du déterminant des deux vecteurs
+
+
