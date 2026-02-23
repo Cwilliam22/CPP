@@ -2,8 +2,10 @@
 #define DIAMONDTRAP_HPP
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class DiamondTrap : public ClapTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 	private:
         std::string         _name;
@@ -11,6 +13,8 @@ class DiamondTrap : public ClapTrap
 	public:
 		DiamondTrap(const std::string name);
 		~DiamondTrap();
+
+        void attack(const std::string& target);
 
         void whoAmI();
 

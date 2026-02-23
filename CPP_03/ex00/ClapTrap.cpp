@@ -63,3 +63,33 @@ void ClapTrap::beRepaired(unsigned int amount)
     _hitPoints += amount;
     return ;
 }
+
+// Setters
+void ClapTrap::setHitPoints(int hp) {
+    _hitPoints = hp;
+}
+
+void ClapTrap::setEnergyPoints(int ep) {
+    _energyPoints = ep;
+}
+
+void ClapTrap::setAttackDamage(int ad) {
+    _attackDamage = ad;
+}
+
+// Getters
+std::string ClapTrap::getName() const {
+    return (_name);
+}
+
+int ClapTrap::getHitPoints() const {
+    return (_hitPoints);
+}
+
+int ClapTrap::getEnergyPoints() const {
+    return (_energyPoints);
+}
+
+int ClapTrap::getAttackDamage() const {
+    return (_attackDamage);
+}

@@ -1,52 +1,43 @@
 #include "ClapTrap.hpp"
-#include "ScaveTrap.hpp"
+#include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
+
 
 int main()
 {
-    std::cout << "=== TEST: ScaveTrap Basic Behavior ===" << std::endl;
+    std::cout << "========================================" << std::endl;
+    std::cout << "   🧪 TEST DE DIAMONDTRAP" << std::endl;
+    std::cout << "========================================" << std::endl;
 
-    ScaveTrap scave("Scavy");
-    
-    // Test attack
-    std::cout << "\n--- Attack Test ---" << std::endl;
-    scave.attack("Enemy");
+    // Création d'un DiamondTrap
+    std::cout << "\n🔹 Création de DiamondTrap 'Bobby'" << std::endl;
+    DiamondTrap d("Bobby");
 
-    // Test repair
-    std::cout << "\n--- Repair Test ---" << std::endl;
-    scave.beRepaired(3);
-    // Test takeDamage
-    std::cout << "\n--- Take Damage Test ---" << std::endl;
-    scave.takeDamage(5);
+    std::cout << "\n🔹 Appel de whoAmI()" << std::endl;
+    d.whoAmI();
 
-    // Test attack after damage
-    std::cout << "\n--- Attack after damage ---" << std::endl;
-    scave.attack("Enemy");
+    std::cout << "\n🔹 Appel de attack('ennemi')" << std::endl;
+    d.attack("ennemi");
 
-    // Test repair after damage
-    std::cout << "\n--- Repair after damage ---" << std::endl;
-    scave.beRepaired(2);
+    std::cout << "\n🔹 Affichage des attributs (via méthodes de ClapTrap)" << std::endl;
+    std::cout << "Nom : " << d.getName() << std::endl;
+    std::cout << "Points de vie : " << d.getHitPoints() << std::endl;
+    std::cout << "Points d'énergie : " << d.getEnergyPoints() << std::endl;
+    std::cout << "Dégâts d'attaque : " << d.getAttackDamage() << std::endl;
 
-    // Test death
-    std::cout << "\n--- Death Test ---" << std::endl;
-    scave.takeDamage(10); // Should kill it
+    std::cout << "\n🔹 Appel de guardGate() (hérité de ScavTrap)" << std::endl;
+    d.guardGate();
 
-    // Test attack when dead
-    std::cout << "\n--- Attack when dead ---" << std::endl;
-    scave.attack("Enemy");
+    std::cout << "\n🔹 Appel de highFivesGuys() (hérité de FragTrap)" << std::endl;
+    d.highFivesGuys();
 
-    // Test repair when dead
-    std::cout << "\n--- Repair when dead ---" << std::endl;
-    scave.beRepaired(5);
+    std::cout << "\n🔹 Destruction de DiamondTrap 'Bobby'" << std::endl;
+    // Le destructeur sera appelé automatiquement ici
 
-    // Test energy depletion
-    std::cout << "\n--- Energy Depletion Test ---" << std::endl;
-    ScaveTrap clap2("Energetic");
-    for (int i = 0; i < 11; i++) {
-        clap2.attack("Target");
-    }
-
-    std::cout << "\n=== TESTS COMPLETED ===" << std::endl;
+    std::cout << "\n========================================" << std::endl;
+    std::cout << "     TEST TERMINÉ AVEC SUCCÈS" << std::endl;
+    std::cout << "========================================" << std::endl;
 
     return (0);
 }

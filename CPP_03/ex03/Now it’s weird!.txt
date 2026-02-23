@@ -1,0 +1,44 @@
+CPP03 -> ex03
+
+-----------------------------------------------------------------------
+Comment faire qu'une Class hérite de deux Class mère ?
+
+(Schéma)
+
+      ClapTrap
+       /    \
+  FragTrap  ScavTrap
+       \    /
+     DiamondTrap
+
+En héritant de deux Class mère elle même hérité d'une même Class mère,
+on risque d'appeler deux fois la même Class mère à la base (ClapTrap).
+
+-----------------------------------------------------------------------
+Comment éviter d'appeler deux fois ClapTrap ?
+
+Utiliser l'héritage virtuel.
+
+"virtual"
+
+-----------------------------------------------------------------------
+Comment utiliser l'héritage virtuel et comment ça fonctionne ?
+
+Le mot "virtual" donne l'info suivante au compilateur :
+    -> Si une classe fille hérite d'une Class mère A et une autre classe
+        fille hérite aussi de ClapTrap, alors seule
+        instance de ClapTrap est créé.
+
+-----------------------------------------------------------------------
+À quoi faire attention ?
+
+-----------------------------------------------------------------------
+À quoi servent les flags -Wshadow et -Wno-shadow ?
+
+-Wshadow : active un avertissement si une variable masque une variable
+de portée supérieure 
+ex: Déclaration de _name dans DiamondTrap alors qu’il existe déjà
+dans ClapTrap.
+
+-Wno-shadow : désactive ce warning.
+

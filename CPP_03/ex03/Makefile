@@ -1,10 +1,10 @@
-NAME = FragTrap
+NAME = DiamondTrapTrap
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow  -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp ClapTrap.cpp ScaveTrap.cpp FragTrap.cpp DiamondTrap.cpp
+SOURCES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)
