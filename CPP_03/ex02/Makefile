@@ -4,7 +4,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp ClapTrap.cpp ScaveTrap.cpp FragTrap.cpp
+SOURCES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

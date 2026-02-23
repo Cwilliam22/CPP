@@ -3,51 +3,32 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-int main()
+
+int main(void)
 {
-    std::cout << "=== TEST: ClapTrap Basic Behavior ===" << std::endl;
+	std::cout << "Création de ClapTrap 'Clap'" << std::endl;
+	ClapTrap c("Clap");
 
-    ClapTrap clap("Clappy");
+	std::cout << std::endl << "Affichage des attributs initiaux" << std::endl << std::endl;
+	std::cout << "Nom : " << c.getName() << std::endl;
+	std::cout << "Points de vie : " << c.getHitPoints() << std::endl;
+	std::cout << "Points d'énergie : " << c.getEnergyPoints() << std::endl;
+	std::cout << "Dégâts d'attaque : " << c.getAttackDamage() << std::endl;
 
-    // Test attack
-    std::cout << "\n--- Attack Test ---" << std::endl;
-    clap.attack("Enemy");
+	std::cout << std::endl << "Appel de attack('ennemi')" << std::endl << std::endl;
+	c.attack("ennemi");
 
-    // Test repair
-    std::cout << "\n--- Repair Test ---" << std::endl;
-    clap.beRepaired(3);
+	std::cout << std::endl << "Appel de takeDamage(3)" << std::endl << std::endl;
+	c.takeDamage(3);
 
-    // Test takeDamage
-    std::cout << "\n--- Take Damage Test ---" << std::endl;
-    clap.takeDamage(5);
+	std::cout << std::endl << "Appel de beRepaired(2)" << std::endl << std::endl;
+	c.beRepaired(2);
 
-    // Test attack after damage
-    std::cout << "\n--- Attack after damage ---" << std::endl;
-    clap.attack("Enemy");
+	std::cout << std::endl << "Affichage des attributs après actions" << std::endl << std::endl;
+	std::cout << "Points de vie : " << c.getHitPoints() << std::endl;
+	std::cout << "Points d'énergie : " << c.getEnergyPoints() << std::endl;
 
-    // Test repair after damage
-    std::cout << "\n--- Repair after damage ---" << std::endl;
-    clap.beRepaired(2);
+	std::cout << std::endl << "Destruction de ClapTrap 'Clap'" << std::endl << std::endl;
 
-    // Test death
-    std::cout << "\n--- Death Test ---" << std::endl;
-    clap.takeDamage(10); // Should kill it
-
-    // Test attack when dead
-    std::cout << "\n--- Attack when dead ---" << std::endl;
-    clap.attack("Enemy");
-
-    // Test repair when dead
-    std::cout << "\n--- Repair when dead ---" << std::endl;
-    clap.beRepaired(5);
-
-    // Test energy depletion
-    std::cout << "\n--- Energy Depletion Test ---" << std::endl;
-    ClapTrap clap2("Energetic");
-    for (int i = 0; i < 11; i++) {
-        clap2.attack("Target");
-    }
-
-    std::cout << "\n=== TESTS COMPLETED ===" << std::endl;
-    return 0;
+	return (0);
 }

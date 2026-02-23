@@ -1,10 +1,10 @@
-NAME = ScaveTrap
+NAME = ScavTrap
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp ClapTrap.cpp ScaveTrap.cpp
+SOURCES = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

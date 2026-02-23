@@ -4,40 +4,30 @@
 #include "DiamondTrap.hpp"
 
 
-int main()
+int main(void)
 {
-    std::cout << "========================================" << std::endl;
-    std::cout << "   🧪 TEST DE DIAMONDTRAP" << std::endl;
-    std::cout << "========================================" << std::endl;
+	std::cout << "Création de DiamondTrap 'Diamond'" << std::endl;
+	DiamondTrap d("Diamond");
 
-    // Création d'un DiamondTrap
-    std::cout << "\n🔹 Création de DiamondTrap 'Bobby'" << std::endl;
-    DiamondTrap d("Bobby");
+	std::cout << "Appel de whoAmI()" << std::endl;
+	d.whoAmI();
 
-    std::cout << "\n🔹 Appel de whoAmI()" << std::endl;
-    d.whoAmI();
+	std::cout << std::endl << "Appel de attack('ennemi')" << std::endl << std::endl;
+	d.attack("ennemi");
 
-    std::cout << "\n🔹 Appel de attack('ennemi')" << std::endl;
-    d.attack("ennemi");
+	std::cout << std::endl << "Affichage des attributs (hérité de ClapTrap)" << std::endl << std::endl;
+	std::cout << "Nom : " << d.getName() << std::endl;
+	std::cout << "Points de vie : " << d.getHitPoints() << std::endl;
+	std::cout << "Points d'énergie : " << d.getEnergyPoints() << std::endl;
+	std::cout << "Dégâts d'attaque : " << d.getAttackDamage() << std::endl;
 
-    std::cout << "\n🔹 Affichage des attributs (via méthodes de ClapTrap)" << std::endl;
-    std::cout << "Nom : " << d.getName() << std::endl;
-    std::cout << "Points de vie : " << d.getHitPoints() << std::endl;
-    std::cout << "Points d'énergie : " << d.getEnergyPoints() << std::endl;
-    std::cout << "Dégâts d'attaque : " << d.getAttackDamage() << std::endl;
+	std::cout << std::endl << "Appel de guardGate() (hérité de ScavTrap)" << std::endl << std::endl;
+	d.guardGate();
 
-    std::cout << "\n🔹 Appel de guardGate() (hérité de ScavTrap)" << std::endl;
-    d.guardGate();
+	std::cout << std::endl << "Appel de highFivesGuys() (hérité de FragTrap)" << std::endl << std::endl;
+	d.highFivesGuys();
 
-    std::cout << "\n🔹 Appel de highFivesGuys() (hérité de FragTrap)" << std::endl;
-    d.highFivesGuys();
+	std::cout << std::endl << "Destruction de DiamondTrap 'Diamond'" << std::endl << std::endl;
 
-    std::cout << "\n🔹 Destruction de DiamondTrap 'Bobby'" << std::endl;
-    // Le destructeur sera appelé automatiquement ici
-
-    std::cout << "\n========================================" << std::endl;
-    std::cout << "     TEST TERMINÉ AVEC SUCCÈS" << std::endl;
-    std::cout << "========================================" << std::endl;
-
-    return (0);
+	return (0);
 }

@@ -2,51 +2,24 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-int main()
+int main(void)
 {
-    std::cout << "=== TEST: ScavTrap Basic Behavior ===" << std::endl;
+	std::cout << "Création de FragTrap 'Frag'" << std::endl;
+	FragTrap f("Frag");
 
-    ScavTrap scav("Scavy");
-    
-    // Test attack
-    std::cout << "\n--- Attack Test ---" << std::endl;
-    scav.attack("Enemy");
+	std::cout << std::endl << "Appel de attack('ennemi')" << std::endl << std::endl;
+	f.attack("ennemi");
 
-    // Test repair
-    std::cout << "\n--- Repair Test ---" << std::endl;
-    scav.beRepaired(3);
-    // Test takeDamage
-    std::cout << "\n--- Take Damage Test ---" << std::endl;
-    scav.takeDamage(5);
+	std::cout << std::endl << "Affichage des attributs (hérité de ClapTrap)" << std::endl << std::endl;
+	std::cout << "Nom : " << f.getName() << std::endl;
+	std::cout << "Points de vie : " << f.getHitPoints() << std::endl;
+	std::cout << "Points d'énergie : " << f.getEnergyPoints() << std::endl;
+	std::cout << "Dégâts d'attaque : " << f.getAttackDamage() << std::endl;
 
-    // Test attack after damage
-    std::cout << "\n--- Attack after damage ---" << std::endl;
-    scav.attack("Enemy");
+	std::cout << std::endl << "Appel de highFivesGuys()" << std::endl << std::endl;
+	f.highFivesGuys();
 
-    // Test repair after damage
-    std::cout << "\n--- Repair after damage ---" << std::endl;
-    scav.beRepaired(2);
+	std::cout << std::endl << "Destruction de FragTrap 'Frag'" << std::endl << std::endl;
 
-    // Test death
-    std::cout << "\n--- Death Test ---" << std::endl;
-    scav.takeDamage(10); // Should kill it
-
-    // Test attack when dead
-    std::cout << "\n--- Attack when dead ---" << std::endl;
-    scav.attack("Enemy");
-
-    // Test repair when dead
-    std::cout << "\n--- Repair when dead ---" << std::endl;
-    scav.beRepaired(5);
-
-    // Test energy depletion
-    std::cout << "\n--- Energy Depletion Test ---" << std::endl;
-    ScavTrap clap2("Energetic");
-    for (int i = 0; i < 11; i++) {
-        clap2.attack("Target");
-    }
-
-    std::cout << "\n=== TESTS COMPLETED ===" << std::endl;
-
-    return (0);
+	return (0);
 }
