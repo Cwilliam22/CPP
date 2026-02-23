@@ -1,0 +1,16 @@
+CPP04
+ex00
+
+-----------------------------------------------------------------------
+C'est quoi un polymophisme en C++ ?
+
+    -> https://blog.alphorm.com/polymorphisme-cpp-flexibilite-extensibilite
+
+    Le polymorphisme permet d’interagir avec des objets de manière abstraite
+    sans connaître leur type concret au moment de l’exécution.
+
+    Le polymorphisme permet d’invoquer une méthode sur un objet sans connaître
+    son type concret au moment de l’appel.
+
+    Cela est possible grâce à une abstraction introduite par un pointeur ou
+    une référence vers une classe mère
