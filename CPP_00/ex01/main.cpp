@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 	std::cout << "=========My Awesome PhoneBook========" << std::endl;
 	std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
 	std::cout << "=====================================" << std::endl;
-	while (1)
+	while (1) // tant que pas Ctrl + D
 	{
 		std::cout << std::endl << "Enter a command : " << std::endl;
 		std::getline(std::cin, command);

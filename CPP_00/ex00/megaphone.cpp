@@ -7,7 +7,12 @@ int main(int argc, char** argv)
 {
 	std::string out;
 
-	for (int j = 1; j < argc; ++j)
+	if (argc == 1)
+	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		return (0);
+	}
+	for (int j = 1; j < argc; j++)
 	{
 		if (j > 1)
 			out += ' ';

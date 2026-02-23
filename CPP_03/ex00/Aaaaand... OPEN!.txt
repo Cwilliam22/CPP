@@ -1,0 +1,12 @@
+
+Module sur l'héritage
+
+Pas d'héritage dans cette exercice puisqu'il y a qu'une seule Class (ClapTrap).
+
+Suivre les conditions des fonctions donné dans l'énoncé.
+
+S'il y a plus aucune des points de vie ou d'attaque les actions devienennt impossible.
+
+Faut-il changer le nombre de dégât d'attaque aprpès l'initialisation ?
+
+Faut-il implémeter une fonction pour changer le nombre de point d'énergie ?  

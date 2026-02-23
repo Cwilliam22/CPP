@@ -1,0 +1,65 @@
+
+(Exercice de avec héritage de Class)
+
+-----------------------------------------------------------------------
+Quelle est le fonctionnement de l'hériatge entre deux Class ?
+
+L'héritage permet de donner à une classe toutes les caractéristiques
+d'une ou de plusieurs autres classes. Les classes dont elle hérite
+sont appelées classes mères, classes de base ou classes antécédentes.
+La classe elle-même est appelée classe fille, classe dérivée ou classe
+descendante.
+
+-----------------------------------------------------------------------
+Comment signifier qu'une Class hérite d'une autre ?
+
+class Classe_mere
+{
+	/* Contenu de la classe mère. */
+};
+
+
+class Classe_fille : public|protected|private Classe_mere
+{
+	/* Définition de la classe fille. */
+};
+
+-----------------------------------------------------------------------
+Quelle est la diférence entre héritage public, privé et protégée ?
+
+Cela modifie la visibilité des membres hérités de la classe mère dans
+la classe fille, selon le modificateur d’héritage utilisé (public,
+protected, private).
+
+(Héritage public)
+	- Les membres publics de la mère → restent publics dans la fille.
+	- Les membres protégés de la mère → restent protégés dans la fille.
+	- Les membres privés de la mère → non accessibles (comme toujours).
+
+(Héritage protected)
+	- Les membres publics de la mère → deviennent protégés dans la fille.
+	- Les membres protégés de la mère → restent protégés dans la fille.
+	- Les membres privés → non accessibles.
+
+(Héritage private)
+	- Les membres publics de la mère → deviennent privés dans la fille.
+	- Les membres protégés de la mère → deviennent privés dans la fille.
+	- Les membres privés → non accessibles.
+
+-----------------------------------------------------------------------
+Comment réutiliser le constructeur et le destructeur de la Class parent ?
+
+Quelle est le fonctionnement de l'hériatge entre deux Class ?
+
+Enoncé
+	- Le constructeur de ClapTrap doit être appelé en premier (car la
+	classe mère doit être initialisée avant la classe fille).
+
+	- À la destruction, c’est l’inverse, le destructeur de ScavTrap est
+	appelé en premier, puis celui de ClapTrap.
+
+	- La classe fille dépend de la classe mère, elle ne peut exister
+	sans que la mère soit construite.
+	
+	- À la destruction, on détruit d’abord la partie “fille”, puis la “mère”,
+	pour éviter d’accéder à des données invalides.
