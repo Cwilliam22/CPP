@@ -1,14 +1,8 @@
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 
-#include <algorithm>
 #include <string>
-#include <cctype>
-
 #include <iostream>
-#include <fstream>
-
-#include <cmath>
 
 class ClapTrap
 {
@@ -19,8 +13,11 @@ class ClapTrap
         int                 _attackDamage;
 
 	public:
-		ClapTrap(const std::string name);
-		~ClapTrap();
+        ClapTrap(); // Default constructor
+        ClapTrap(std::string name); // Initialisation Constructor
+        ClapTrap(const ClapTrap& other); // Copy constructor
+        ClapTrap& operator=(const ClapTrap& other); // Copy assignment operator
+		~ClapTrap(); // Destructor
 
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
@@ -37,7 +34,6 @@ class ClapTrap
         int getHitPoints() const;
         int getEnergyPoints() const;
         int getAttackDamage() const;
-
 };
 
 #endif

@@ -1,4 +1,4 @@
-NAME = DiamondTrapTrap
+NAME = DiamondTrap
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow  -std=c++98
