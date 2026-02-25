@@ -1,0 +1,58 @@
+CPP04
+ex02
+
+------------------------------------------------------
+C'est quoi une Class abstraite ?
+
+C'une classe qui ne peut pas être instanciée directement
+et sert de modèle pour des classes dérivées.
+
+Parce qu’elle a au moins une méthode virtuelle pure (= 0).
+
+
+------------------------------------------------------
+À quoi ça sert ?
+
+Forcer les classes dérivées à implémenter certaines
+méthodes.
+
+Exemple : 
+
+class Animal
+{
+    public:
+    virtual void makeSound() const = 0; // virtuelle pure
+    (...)
+};
+
+Animal a; // impossible à faire puisque Animal est abstract
+
+------------------------------------------------------
+Comment l'utiliser ?
+
+Destructeur virtuel obligatoire si on veut delete via
+un pointeur de type parent -> sinon, fuite mémoire.
+
+
+------------------------------------------------------
+Méthode virtuelle pure (= 0)
+
+Une méthode virtuelle pure est une méthode déclarée
+mais non implémentée dans la classe parente -> obligatoire
+à implémenter dans les classes dérivées.
+
+C’est une méthode déclarée mais sans corps -> aucun
+comportement par défaut -> obligatoire à implémenter
+dans les classes dérivées.
+
+Le =0 implique qu'il n'a pas de corps pour cette méthode
+par conséquent elle doit être redéfinie dans les classes
+filles.
+
+------------------------------------------------------
+Définition :
+
+(instance)
+    Une instance, c’est un objet concret créé à partir
+    d’un modèle (une classe).
+

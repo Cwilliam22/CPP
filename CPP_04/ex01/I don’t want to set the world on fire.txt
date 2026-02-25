@@ -1,0 +1,42 @@
+
+
+------------------------------------------------------
+C'est quoi le polymorphisme ?
+
+C’est la capacité à traiter des objets de types
+différents de la même manière, grâce à une interface
+commune.
+
+------------------------------------------------------
+Méthode virtuelle (virtual)
+
+Une méthode virtuelle permet de changer son comportement
+selon le type réel de l’objet, même si on le manipule
+via un pointeur ou référence de type parent.
+
+C’est une méthode qui peut être redéfinie dans les classes
+dérivées, mais elle a déjà un comportement par défaut dans
+la classe parente.
+
+Le mot-clef "virtual" une méthode active le polymorphisme
+ce qui signifie que la méthode appelée dépend du type réel
+de l’objet, et non du type du pointeur ou de la référence.
+
+Exemple :
+
+ClaptTrap *test = new ScavTrap("Scav")
+test->attack("20")
+
+Si ScavTrap et ClapTrap possède toutes deux une fonction
+membre attack() alors le mot clef virtual nous fera utiliser
+la version de la Class ScavTrap.
+
+Si attack() est déclarée virtual dans ClapTrap, alors c’est
+la méthode ScavTrap::attack() qui sera appelée, même si le
+pointeur est de type ClapTrap*.
+
+------------------------------------------------------
+
+------------------------------------------------------
+
+------------------------------------------------------
