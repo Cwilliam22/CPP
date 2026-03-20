@@ -1,0 +1,74 @@
+CPP 05
+ex00
+
+------------------------------------------------------------------------------------
+
+Notion(s) :
+	- Gestion des exceptions personnalisées
+
+------------------------------------------------------------------------------------
+
+Gestion des exceptions personnalisées :
+
+		(Explications)
+			Les exceptions sont une nouvelle maniere de gerer les erreurs
+			Remonte une erreur sur la pile
+
+			Création de classes d'exception dérivées (ici GradeTooHighException
+			et GradeTooLowException), levée d'exceptions avec throw dans le constructeur
+			et les méthodes, et interception via des blocs try/catch capturant
+			std::exception.
+
+			Le but est le suivant, empecher qu'un objet bureaucrate avec un grade
+			incorrect soit cree.
+
+			L'héritage permet de créer une hiérarchie logique et de garantir la compatibilité.
+
+			Le Standardise (std::exception) : En C++, il existe une classe de base standard
+			appelée std::exception. Toute exception "standard" ou "personnalisée" doit hériter
+			de cette classe (ou d'une de ses dérivées comme std::runtime_error).
+
+			Le Polymorphisme (La clé du catch) : Le bloc try/catch est conçu pour attraper
+			des objets de type std::exception. Grâce à l'héritage, une classe dérivée
+			(comme GradeTooHighException) est aussi un std::exception.
+
+		(Syntaxe)
+			(exemple 1)
+			try {
+				int age = 15;
+				if (age >= 18) {
+					cout << "Access granted - you are old enough.";
+			} else {
+				throw (age);
+				}
+			}
+			catch (int myNum) {
+				cout << "Access denied - You must be at least 18 years old.\n";
+				cout << "Age is: " << myNum;
+			}
+
+			(exemple 2)
+			try
+			{
+				/* do some stuff with bureaucrats */
+			}
+			catch (std::exception & e)
+			{
+				/* handle exception */
+			}
+
+
+			Le bloque try est censer essayer de faire qqch.
+			S'il y a une erreur on va lancer une exception (throw).
+				Exemple : throw std::exception()
+					Le std est a la base de toutes les exceptions.
+
+			Que fait throw ?
+			Remonte dans les blocs jusqu'a trouver un bloc 'catch'.
+				catch (std;; exception name)
+				{
+					//code
+				}
+
+				A l'interieur de ce bloc on va pouvoir gerer l'erreur
+
