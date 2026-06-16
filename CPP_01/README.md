@@ -429,7 +429,7 @@ int main() {
 
 ---
 
-## 🔑 Notions clés
+## Notions clés
 
 - `new`, `delete`, `new[]`, `delete[]`
 - Stack (pile) vs Heap (tas)
