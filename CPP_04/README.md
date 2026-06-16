@@ -446,7 +446,7 @@ int main() {
 
 ---
 
-## 🔑 Notions clés
+## Notions clés
 
 - Polymorphisme : traiter des objets de types différents via une interface commune
 - Possible uniquement via **pointeur** ou **référence** vers la classe mère
