@@ -1,4 +1,4 @@
-# Résumé pédagogique — MODULE 00 : Introduction à la POO et aux classes
+# Résumé MODULE 00 : Introduction à la POO et aux classes
 
 > Ce module est le point d'entrée dans la programmation orientée objet (POO) en C++.
 > Chaque notion inclut une explication du concept, pourquoi il existe, et un exemple clair pour bien le comprendre.
@@ -139,7 +139,7 @@ int main() {
 
 ---
 
-## 🔑 Mots-clés du module
+## Notions clés du module
 
 - `class`, `public`, `private`
 - `std::string`, `std::cout`
