@@ -418,7 +418,7 @@ void DiamondTrap::whoAmI() {
 
 ---
 
-## 🔑 Notions clés
+## Notions clés
 
 - Héritage : classe mère / classe fille, relation "est un"
 - Syntaxe : `class Fille : public Mere {}`
