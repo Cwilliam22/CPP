@@ -1,10 +1,10 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
 {
-	
 	if (!is_name(name))
 		throw InvalidNameException();
 	if (grade < 1)
@@ -30,25 +30,21 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat() {}
 
-std::string Bureaucrat::getName() const
-{
+std::string Bureaucrat::getName() const	{
 	return (_name);
 }
 
-int Bureaucrat::getGrade() const
-{
+int Bureaucrat::getGrade() const {
 	return (_grade);
 }
 
-void Bureaucrat::incrementGrade()
-{
+void Bureaucrat::incrementGrade() {
 	if (_grade <= 1)
 		throw GradeTooHighException();
 	_grade--;
 }
 
-void Bureaucrat::decrementGrade()
-{
+void Bureaucrat::decrementGrade() {
 	if (_grade >= 150)
 		throw GradeTooLowException();
 	_grade++;
@@ -64,6 +60,21 @@ bool Bureaucrat::is_name(const std::string& name) const
 			return (0);
 	}
 	return (1);
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+		return;
+	}
+	std::cout << _name << " signed " << form.getName() << std::endl;
+	return;
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &other)

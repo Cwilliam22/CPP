@@ -9,6 +9,10 @@
 #include <cmath>
 #include <exception>
 
+#include "Bureaucrat.hpp"
+
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -23,6 +27,7 @@ class Bureaucrat
 		~Bureaucrat();
 
 		bool is_name(const std::string& name) const;
+		void signForm(Form &form);
 
 		std::string getName() const;
 		int getGrade() const;
@@ -35,7 +40,7 @@ class Bureaucrat
 		{
 			public:
 				const char* what() const throw() {
-					return "Grade is too low!";
+					return ("Grade is too low!");
 				}
 		};
 
@@ -44,7 +49,7 @@ class Bureaucrat
 		{
 			public:
 				const char* what() const throw() {
-					return "Grade is too high!";
+					return ("Grade is too high!");
 				}
 		};
 
@@ -53,7 +58,7 @@ class Bureaucrat
 		{
 			public:
 				const char* what() const throw() {
-					return "Invalid name: Name must not be empty and must not contain digits.";
+					return ("Invalid name: Name must not be empty and must not contain digits.");
 				}
 		};
 		

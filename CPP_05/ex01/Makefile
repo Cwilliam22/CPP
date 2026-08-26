@@ -1,10 +1,10 @@
-NAME = Animal
+NAME = Form
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SOURCES = main.cpp Bureaucrat.cpp Form.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

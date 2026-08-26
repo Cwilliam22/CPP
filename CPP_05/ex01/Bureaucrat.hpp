@@ -9,6 +9,10 @@
 #include <cmath>
 #include <exception>
 
+#include "Bureaucrat.hpp"
+
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -23,6 +27,7 @@ class Bureaucrat
 		~Bureaucrat();
 
 		bool is_name(const std::string& name) const;
+		void signForm(Form &form);
 
 		std::string getName() const;
 		int getGrade() const;
