@@ -1,102 +1,66 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-// output : <name>, bureaucrat grade <grade>
-int main(void)
-{
-	std::cout << "\033[36m" << std::endl << "Test ex01" << "\033[0m" << std::endl;
+static void printTitle(const std::string& title) {
+	std::cout << "\n\033[36m--- " << title << " ---\033[0m" << std::endl;
+}
 
-	std::cout << "\033[36m" << std::endl << "Test too high and too low creation for Form" << "\033[0m" << std::endl;
+int main(void) {
+	// 1) Creation de Bureaucrat : rappel rapide des bornes de grade (1 a 150).
+	printTitle("1. Creation de Bureaucrat (valide / trop haut / trop bas)");
+	Bureaucrat boss("Boss", 1);
+	std::cout << boss << std::endl;
 	try
 	{
-		Form form_invalid1("form1", 1500, 1500);
+		Bureaucrat invalid("Invalide", 0);
 	}
-	catch(const std::exception &e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cout << "Exception attendue : " << e.what() << std::endl;
 	}
 
-	try
-	{
-		Form form_invalid2("form2", -10, -10);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
+	// 2) Creation d'un ShrubberyCreationForm : grades fixes (sign 145, exec 137),
+	printTitle("2. Creation d'un ShrubberyCreationForm");
+	ShrubberyCreationForm shrubbery("garden");
+	std::cout << shrubbery;
 
-	std::cout << "\033[36m" << std::endl << "Test sign and Form with valid grades" << "\033[0m" << std::endl;
-	Form form("Form", 150, 150);
-	Bureaucrat bureaucrat1("William", 150);
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
+	// 3) Tenter d'executer un formulaire non signe via Bureaucrat::executeForm() :
+	printTitle("3. Executer un formulaire non signe");
+	boss.executeForm(shrubbery);
 
-	std::cout << "\033[36m" << std::endl << "Test sign Form with too low grade" << "\033[0m" << std::endl;
-	Form form_copy1("Form", 150, 150);
-	form = form_copy1;
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		std::cout << "Incrementing Form's grades to sign and execute +1 " << std::endl;
-		form.incrementGradeSign();
-		form.incrementGradeExecute();
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
+	// 4) Tenter de signer avec un grade insuffisant (145 requis pour signer).
+	printTitle("4. Signature refusee (grade insuffisant)");
+	Bureaucrat intern("Intern", 150);
+	intern.signForm(shrubbery);
+	std::cout << shrubbery;
 
-	std::cout << "\033[36m" << std::endl << "Test sign Form with too high grade" << "\033[0m" << std::endl;
-	Form form_copy2("Form", 149, 149);
-	form = form_copy2;
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		std::cout << "Incrementing Bureaucrat's grade +2 " << std::endl;
-		bureaucrat1.incrementGrade();
-		bureaucrat1.incrementGrade();
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
+	// 5) Signer avec un grade suffisant.
+	printTitle("5. Signature reussie");
+	boss.signForm(shrubbery);
+	std::cout << shrubbery;
 
-	std::cout << "\033[36m" << std::endl << "Test sign Form with too low grade but after decrementing" << "\033[0m" << std::endl;
-	Form form_copy3("Form", 149, 149);
-	form = form_copy3;
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		std::cout << "Decrementing Bureaucrat's grade -2 " << std::endl;
-		bureaucrat1.decrementGrade();
-		bureaucrat1.decrementGrade();
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
+	// 6) Executer avec un grade insuffisant (137 requis pour executer) :
+	printTitle("6. Execution refusee (grade insuffisant)");
+	intern.executeForm(shrubbery);
+
+	// 7) Executer avec un grade suffisant : l'action reelle doit se produire
+	printTitle("7. Execution reussie (fichier genere)");
+	boss.executeForm(shrubbery);
+
+	// 8) Meme scenario, version courte, pour RobotomyRequestForm (resultat aleatoire).
+	printTitle("8. RobotomyRequestForm : signature puis execution");
+	RobotomyRequestForm robotomy("Bender");
+	boss.signForm(robotomy);
+	boss.executeForm(robotomy);
+
+	// 9) Meme scenario, version courte, pour PresidentialPardonForm.
+	printTitle("9. PresidentialPardonForm : signature puis execution");
+	PresidentialPardonForm pardon("Bender");
+	boss.signForm(pardon);
+	boss.executeForm(pardon);
 
 	return (0);
 }

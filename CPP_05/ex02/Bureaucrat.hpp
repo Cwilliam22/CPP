@@ -1,22 +1,17 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <algorithm>
 #include <string>
 #include <cctype>
 #include <iostream>
-#include <fstream>
-#include <cmath>
 #include <exception>
 
-#include "Bureaucrat.hpp"
-
-class Form;
+class AForm;
 
 class Bureaucrat
 {
 	private:
-		std::string _name;
+		const std::string _name;
 		int _grade;
 
 	public:
@@ -26,8 +21,8 @@ class Bureaucrat
 		Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat();
 
-		bool is_name(const std::string& name) const;
-		void signForm(Form &form);
+		void signForm(AForm &form);
+		void executeForm(AForm const & form) const;
 
 		std::string getName() const;
 		int getGrade() const;
@@ -52,17 +47,6 @@ class Bureaucrat
 					return ("Grade is too high!");
 				}
 		};
-
-		// Class pour l'exception "invalid name"
-		class InvalidNameException : public std::exception
-		{
-			public:
-				const char* what() const throw() {
-					return ("Invalid name: Name must not be empty and must not contain digits.");
-				}
-		};
-		
-
 };
 
 std::ostream &operator<<(std::ostream & os, Bureaucrat const &other);

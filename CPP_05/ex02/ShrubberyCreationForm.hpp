@@ -6,25 +6,24 @@
 class ShrubberyCreationForm : public AForm
 {
 	private:
-		std::string _target; // nom du fichier de sortie pour le dessin de l'arbre
+		const std::string _target;
 
 	public:
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), _target(target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other);
+		ShrubberyCreationForm(const std::string& target);
+		ShrubberyCreationForm(const ShrubberyCreationForm &other);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 
-		class OpenTargetFFileException : public std::exception
+		void action() const;
+
+		class OpenTargetFileException : public std::exception
 		{
 			public:
 				const char* what() const throw() {
 					return ("Could not open and write the file!");
 				}
 		};
-
-		
-		void execute(Bureaucrat const &executor) const;
 };
 
 #endif

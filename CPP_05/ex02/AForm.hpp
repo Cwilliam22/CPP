@@ -1,35 +1,33 @@
 #ifndef AFORM_HPP
 #define AFORM_HPP
 
-#include <algorithm>
 #include <string>
 #include <cctype>
 #include <iostream>
-#include <fstream>
-#include <cmath>
 #include <exception>
-
-#include "Bureaucrat.hpp"
+#include <stdlib.h>
+#include <fstream>
 
 class Bureaucrat;
 
 class AForm
 {
 	private:
-		std::string _name;
+		const std::string _name;
         bool _is_signed;
 		int _grade_sign;
     	int _grade_execute;
 
 	public:
         AForm();
-		AForm(const std::string& name, int grade_execute, int grade_sign);
+		AForm(const std::string& name, int grade_sign, int grade_execute);
 		AForm(const AForm& other);
 		AForm& operator=(const AForm& other);
-		~AForm();
+		virtual ~AForm();
 
 		// Méthodes
 		void execute(Bureaucrat const & executor) const;
+		virtual void action() const = 0;
 		void beSigned(const Bureaucrat &bureaucrat);
 		
 		// Getters
@@ -53,6 +51,15 @@ class AForm
 			public:
 				const char* what() const throw() {
 					return ("Grade is too high!");
+				}
+		};
+
+		// Class pour l'exception "form not signed"
+		class FormNotSignedException : public std::exception
+		{
+			public:
+				const char* what() const throw() {
+					return ("Form is not signed!");
 				}
 		};
 
