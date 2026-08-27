@@ -1,79 +1,62 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-// output : <name>, bureaucrat grade <grade>
+static void printTitle(const std::string& title)
+{
+	std::cout << std::endl << "\033[36m--- " << title << " ---\033[0m" << std::endl;
+}
+
 int main(void)
 {
-	std::cout << "\033[36m" << std::endl << "Test ex01" << "\033[0m" << std::endl;
-	std::cout << "\033[36m" << std::endl << "Test too high and too low creation for Form" << "\033[0m" << std::endl;
+	// 1) Creation d'un Form avec des grades valides : aucune exception attendue.
+	printTitle("1. Creation d'un Form valide");
+	Form validForm("Permis de construire", 50, 25);
+	std::cout << validForm;
+
+	// 2) Creation d'un Form avec un grade trop bas en pouvoir (> 150).
+	printTitle("2. Creation d'un Form avec un grade trop bas (> 150)");
 	try
 	{
-		Form form_invalid1("form1", 1500, 1500);
+		Form tooLow("Formulaire invalide", 1500, 1500);
+		std::cout << tooLow;
 	}
-	catch(const std::exception &e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cout << "Exception attendue : " << e.what() << std::endl;
 	}
 
+	// 3) Creation d'un Form avec un grade trop haut en pouvoir (< 1).
+	printTitle("3. Creation d'un Form avec un grade trop haut (< 1)");
 	try
 	{
-		Form form_invalid2("form2", -10, -10);
+		Form tooHigh("Formulaire invalide", -10, -10);
+		std::cout << tooHigh;
 	}
-	catch(const std::exception &e)
+	catch (const std::exception& e)
 	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cout << "Exception attendue : " << e.what() << std::endl;
 	}
-	std::cout << "\033[36m" << std::endl << "Test sign and Form with valid grades" << "\033[0m" << std::endl;
-	Form form("Form", 150, 150);
-	Bureaucrat bureaucrat1("William", 150);
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
-	std::cout << "\033[36m" << std::endl << "Test sign Form with too high grade" << "\033[0m" << std::endl;
-	Form form_copy2("Form", 149, 149);
-	form = form_copy2;
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		std::cout << "Incrementing Bureaucrat's grade +2 " << std::endl;
-		bureaucrat1.incrementGrade();
-		bureaucrat1.incrementGrade();
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
 
-	std::cout << "\033[36m" << std::endl << "Test sign Form with too low grade but after decrementing" << "\033[0m" << std::endl;
-	Form form_copy3("Form", 149, 149);
-	form = form_copy3;
-	try
-	{
-		std::cout << form;
-		std::cout << bureaucrat1;
-		std::cout << "Decrementing Bureaucrat's grade -2 " << std::endl;
-		bureaucrat1.decrementGrade();
-		bureaucrat1.decrementGrade();
-		bureaucrat1.signForm(form);
-	}
-	catch(const std::exception &e)
-	{
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
-	std::cout << form;
-	std::cout << bureaucrat1;
+	// 4) Signature reussie : le bureaucrate a un grade suffisant (<= grade requis).
+	printTitle("4. Signature reussie (grade du bureaucrate suffisant)");
+	Bureaucrat goodSigner("Alice", 20);
+	Form form1("Congé exceptionnel", 50, 25);
+	std::cout << "Avant signature : " << form1;
+	goodSigner.signForm(form1);
+	std::cout << "Apres signature : " << form1;
+
+	// 5) Signature refusee : le bureaucrate n'a pas un grade suffisant.
+	printTitle("5. Signature refusee (grade du bureaucrate insuffisant)");
+	Bureaucrat weakSigner("Bernard", 100);
+	Form form2("Demande de materiel", 50, 25);
+	std::cout << "Avant tentative : " << form2;
+	weakSigner.signForm(form2);
+	std::cout << "Apres tentative : " << form2;
+
+	// 6) Un Form deja signe reste signe si on retente avec un bureaucrate valide.
+	printTitle("6. Nouvelle tentative apres une premiere signature reussie");
+	goodSigner.signForm(form1);
+	std::cout << "Toujours signe : " << form1;
+	
 	return (0);
 }

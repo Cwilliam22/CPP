@@ -1,22 +1,17 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
-#include <algorithm>
 #include <string>
 #include <cctype>
 #include <iostream>
-#include <fstream>
-#include <cmath>
 #include <exception>
-
-#include "Bureaucrat.hpp"
 
 class Form;
 
 class Bureaucrat
 {
 	private:
-		std::string _name;
+		const std::string _name;
 		int _grade;
 
 	public:
@@ -52,16 +47,6 @@ class Bureaucrat
 					return "Grade is too high!";
 				}
 		};
-
-		// Class pour l'exception "invalid name"
-		class InvalidNameException : public std::exception
-		{
-			public:
-				const char* what() const throw() {
-					return "Invalid name: Name must not be empty and must not contain digits.";
-				}
-		};
-		
 
 };
 

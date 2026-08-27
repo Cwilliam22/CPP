@@ -1,22 +1,17 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include <algorithm>
 #include <string>
 #include <cctype>
 #include <iostream>
-#include <fstream>
-#include <cmath>
 #include <exception>
-
-#include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
 class Form
 {
 	private:
-		std::string _name;
+		const std::string _name;
         bool _is_signed;
 		int _grade_sign;
     	int _grade_execute;
