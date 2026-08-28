@@ -1,0 +1,24 @@
+Écrivez une classe ScalarConverter qui ne contiendra qu'une seule méthode statique « convert »
+
+prenant en paramètre une représentation sous forme de chaîne de caractères d'un littéral C++ dans sa forme la plus courante
+
+et renvoyant sa valeur dans l'une des séries de types scalaires suivantes :
+
+• char
+• int
+• float
+• double
+Comme cette classe n'a pas besoin de stocker de données, elle ne doit pas être instanciée par les utilisateurs.
+
+À l'exception des paramètres de type char, seule la notation décimale sera utilisée.
+
+Exemples de littéraux char : 'c', 'a', ...
+
+Pour simplifier, veuillez noter que les caractères non affichables ne doivent pas être utilisés comme
+entrées. Si une conversion en char ne peut pas être affichée, affichez un message informatif. Exemples de littéraux entiers : 0, -42, 42…
+
+Exemples de littéraux flottants : 0.0f, -4.2f, 4.2f…
+
+Il faut également gérer ces pseudo-littéraux (pour la science, vous savez) : -inff, +inff,
+
+et nanf.
