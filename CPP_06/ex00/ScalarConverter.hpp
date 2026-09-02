@@ -5,20 +5,21 @@
 #include <cctype>
 #include <iostream>
 #include <exception>
+#include <limits>
+#include <cstdlib>
+#include <iomanip>
+#include <cmath>
 
 class ScalarConverter
 {
 	private:
-
-	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
 		ScalarConverter& operator=(const ScalarConverter& other);
 		~ScalarConverter();
 
-		void convert();
+	public:
+		static void convert(const std::string& str) ;
 };
-
-std::ostream &operator<<(std::ostream & os, ScalarConverter const &other);
 
 #endif

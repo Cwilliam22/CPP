@@ -1,10 +1,10 @@
-NAME = ScalarConverter
+NAME = Bureaucrat
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp ScalarConverter.cpp
+SOURCES = main.cpp Bureaucrat.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

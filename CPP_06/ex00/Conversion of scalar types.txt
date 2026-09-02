@@ -1,24 +1,39 @@
-Écrivez une classe ScalarConverter qui ne contiendra qu'une seule méthode statique « convert »
 
-prenant en paramètre une représentation sous forme de chaîne de caractères d'un littéral C++ dans sa forme la plus courante
+Private dans une class empeche l'appel de la méthode ou de l'attribut par l'extérieur
 
-et renvoyant sa valeur dans l'une des séries de types scalaires suivantes :
+La fonction statique de la class appartient à la class elle même et pas a une instance.
+    Donc pas de pointeur "this" vers l'objet puisqu'il n'y a pas forcement d'objet.
 
-• char
-• int
-• float
-• double
-Comme cette classe n'a pas besoin de stocker de données, elle ne doit pas être instanciée par les utilisateurs.
+Ajouter un const à une fonction statique entraîne une erreur à la compilation 
+    Const est une promesse, celle qu'elle ne modifiera pas l'objet sur lequel elle est appellé.
+    Protection de l'objet
+    Le mot "const" s'attache au mot "this".
+    Cependant une fonction static n'a pas de "this"
+    Il n'y a donc rien a protégé avec le const 
 
-À l'exception des paramètres de type char, seule la notation décimale sera utilisée.
+Nouvelle fonction pour ce module 
+    std::isprint(valeur)
+        Renvoie vrai si le caractère est imprimable et faux pour les caractères de contrôle (comme le retour à la ligne, la tabulation, ou le caractère 0)
+        Attend un int représentant un caractère non signé (ou EOF) -> C'est quoi un EOF ?
+        Paramètre : Un entier représentant le caractère à tester (souvent un char converti implicitement en int)
+    strtod — string to double
+        double strtod(const char* nptr, char** endptr);
+        str.c_str() pour transformer ton std::string en const char*
+    strtof — string to float
+        float strtof(const char* nptr, char** endptr);
+    strtol — string to long
+        long strtol(const char* nptr, char** endptr, int base);
 
-Exemples de littéraux char : 'c', 'a', ...
+Accéder aux limites :
+    std::numeric_limits<int>::max()
+    std::numeric_limits<int>::min() 
 
-Pour simplifier, veuillez noter que les caractères non affichables ne doivent pas être utilisés comme
-entrées. Si une conversion en char ne peut pas être affichée, affichez un message informatif. Exemples de littéraux entiers : 0, -42, 42…
+Les valeurs spéciales (nan, inf) :
+    Ce sont un cas particulier d'overflow/impossible : un nan ou un inf n'a aucune traduction sensée en int ou en char.
 
-Exemples de littéraux flottants : 0.0f, -4.2f, 4.2f…
 
-Il faut également gérer ces pseudo-littéraux (pour la science, vous savez) : -inff, +inff,
+Questions : 
+Pour empecher d'instancier une class
+    mettre le constructeur et toute la forme canonique en private ?
+    car class vide ?
 
-et nanf.
