@@ -1,0 +1,16 @@
+Idée générale de la sérialisation, c'est transformer une donnée complexe
+(ici, une adresse mémoire) en une forme plus "brute" et transportable 
+(ici, un simple nombre), puis pouvoir la reconvertir dans l'autre sens.
+
+serialize prend un pointeur vers un objet Data (une adresse mémoire, donc)
+ et le convertit en un entier non signé de type uintptr_t.
+
+deserialize fait l'opération inverse : elle prend cet entier et le reconvertit
+en pointeur vers un Data.
+
+reinterpret_cast -> celui qui dit "prends ces mêmes bits en mémoire, et traite-les comme un autre type"
+
+Approfondir la notion d'adresse mémoire et pourquoi ce genre de conversion (pointeur ↔ entier) est possible
+
+Une structure totalement vide (struct Data {};) compilerait très bien, mais l'exercice perdrait de son sens
+    -> le but est de manipuler un objet qui occupe réellement de la mémoire

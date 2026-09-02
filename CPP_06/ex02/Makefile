@@ -1,10 +1,10 @@
-NAME = Bureaucrat
+NAME = Base
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCDIR = .
-SOURCES = main.cpp Bureaucrat.cpp
+SOURCES = main.cpp Base.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)

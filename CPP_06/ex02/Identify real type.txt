@@ -1,0 +1,2 @@
+dynamic_cast -> ne fonctionne que sur des hiérarchies polymorphes
+une référence, par définition, ne peut jamais être "nulle"
