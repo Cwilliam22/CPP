@@ -1,0 +1,43 @@
+Utilisation des templates pour passe n'importe qu'elle type
+supportable par des opérateur à ma fonction.
+
+La force des templates est d'autoriser une fonction ou une
+classe à utiliser des types différents. Leur marque de fabrique
+est la présence des chevrons < et >  .
+
+Objectif -> éviter de répeter une tâche X fois
+    On a pas besoin d'écrire plusieurs fois la même fonction
+    pour prendre différents types
+
+Le terme français pour template est modèle. 
+    Ecrire un modèle de fonction, et le compilateur va utiliser
+    ce modèle dans les différents cas qui nous intéressent.
+
+Besoin d'indiquer au compilateur que je veux faire une fonction générique.
+    template<typename T>
+    1. Le mot-clé template prévient le compilateur que la prochaine chose dont
+    on va lui parler sera générique.
+    2. Les symboles < et > constituent la marque de fabrique des templates.
+    3. Le mot-clé typename indique au compilateur que T sera le nom que l'on va
+    utiliser pour notre "type spécial" qui remplace n'importe quoi.
+
+    template n'est pas une fonctionnalité de bibliothèque, c'est un mot-clé du langage C++ lui-même
+
+Warning pour swap() :
+    déclarer une variable temporaire de la manière suivante pour faire le swap est faux 
+        T tmp;
+        tmp = a;
+        a = b;
+        b = tmp;
+
+    Pourquoi ?
+        Ici tmp est vide et au moment de l'initialisation il appele le constructeur par défaut.
+        Ceci n'est pas faux comme ça avec un int ou une std::string.
+        Cependant si les objet à swap étaient deux class sans constructeur par défaut (qui ne prend pas d'argument).
+        Alors il y aurait un beug qui mettrait en échec le programme.
+        Pour contrer ça il faudrait utiliser les syntaxes suivantes :
+            T tmp = a; (ou) T tmp(a);
+
+
+Sources :
+https://openclassrooms.com/en/courses/7137751-programmez-en-oriente-objet-avec-c/7533236-creez-des-templates

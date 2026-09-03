@@ -1,0 +1,8 @@
+Refaire la même chose que pour l'exercice précédent.
+
+Piège :
+    dans iter la fonction devrait pouvoir prendre n'importe quelle argument et 
+    renvoyer n'importe quel type de valeur
+
+    dans cette idée il faut déclarer un nouveau template pour prendre en compte
+    cette fonction et sa particularité
