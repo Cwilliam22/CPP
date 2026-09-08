@@ -22,6 +22,8 @@ class Array
 
         T &operator[](unsigned int index);
 
+        const T &operator[](unsigned int index) const;
+
         size_t size() const;
 
         class OutOfBoundsException : public std::exception
