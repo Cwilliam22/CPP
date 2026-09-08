@@ -15,8 +15,8 @@ class AForm
 	private:
 		const std::string _name;
         bool _is_signed;
-		int _grade_sign;
-    	int _grade_execute;
+		const int _grade_sign;
+    	const int _grade_execute;
 
 	public:
         AForm();
@@ -34,8 +34,8 @@ class AForm
         std::string getName() const;
 		bool getIsSigned() const;
 		int getGradeSign() const;
-		int getGradeExecute() const;        
-
+		int getGradeExecute() const;
+		      
         // Class pour l'exception "grade > 150"
 		class GradeTooLowException : public std::exception
 		{

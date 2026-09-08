@@ -1,29 +1,24 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
+static int checkGrade(int grade) {
+	if (grade < 1)
+		throw AForm::GradeTooHighException();
+	else if (grade > 150)
+		throw AForm::GradeTooLowException();
+	return (grade);
+}
+
 // Forme canoniques
 AForm::AForm() : _name("Default"), _is_signed(0), _grade_sign(150), _grade_execute(150) {}
 
-AForm::AForm(const std::string& name, int grade_sign, int grade_execute) : _name(name), _is_signed(0) {
-	if (grade_execute < 1 || grade_sign < 1)
-		throw GradeTooHighException();
-	else if (grade_execute > 150 || grade_sign > 150)
-		throw GradeTooLowException();
-	_grade_execute = grade_execute;
-	_grade_sign = grade_sign;
-	return ;
-}
+AForm::AForm(const std::string& name, int grade_sign, int grade_execute) : _name(name), _is_signed(0), _grade_sign(checkGrade(grade_sign)), _grade_execute(checkGrade(grade_execute)) {}
 
 AForm::AForm(const AForm& other) : _name(other._name), _is_signed(other._is_signed), _grade_sign(other._grade_sign),  _grade_execute(other._grade_execute) {}
 
 AForm& AForm::operator=(const AForm& other) {
 	if (this != &other)
-	{
         _is_signed = other._is_signed;
-		_grade_sign = other._grade_sign;
-        _grade_execute = other._grade_execute;
-
-	}
 	return (*this);
 }
 
