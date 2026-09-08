@@ -1,9 +1,20 @@
 #include "ScalarConverter.hpp"
 
+bool isFullyConsumed(const std::string& str)
+{
+    char* end;
+    strtod(str.c_str(), &end);
+    return (*end == '\0' && end != str.c_str());
+}
+
 bool isNumber(const std::string& str) {
 	size_t i = 0;
 	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str.length() == 1)
+			return (false);
 		i++;
+	}
 	while (i < str.length()) {
 		if (!std::isdigit(str[i]))
 			return (false);
@@ -75,10 +86,10 @@ void printFloat(const std::string& str, int type) {
 	}
 	char* end;
 	float valeur = strtof(str.c_str(), &end);
-	if (valeur == static_cast<int>(valeur))
-		std::cout << "float: " << valeur << ".0f" << std::endl;
+	if (valeur == std::floor(valeur))
+    	std::cout << "float: " << valeur << ".0f" << std::endl;
 	else
-		std::cout << "float: " << valeur << "f" << std::endl;
+    	std::cout << "float: " << valeur << "f" << std::endl;
 }
 
 void printDouble(const std::string& str, int type) {
@@ -89,7 +100,7 @@ void printDouble(const std::string& str, int type) {
 	}
 	char* end;
 	double valeur = strtod(str.c_str(), &end);
-	if (valeur == static_cast<int>(valeur))
+	if (valeur == std::floor(valeur))
 		std::cout << "double: " << valeur << ".0" << std::endl;
 	else
 		std::cout << "double: " << valeur << std::endl;
@@ -119,9 +130,23 @@ void ScalarConverter::convert(const std::string& str) {
 	else if (str.find('.') != std::string::npos)
 	{
 		if (str[str.length() - 1] == 'f')
+		{
+			if (!isFullyConsumed(str.substr(0, str.length() - 1)))
+			{
+				std::cout << "Error: String not displayable." << std::endl;
+				return;
+			}
 			type = 3;
+		}
 		else
+		{
+			if (!isFullyConsumed(str))
+			{
+				std::cout << "Error: String not displayable." << std::endl;
+				return;
+			}
 			type = 4;
+		}
 	}
 	else if (isNumber(str))
 		type = 2;
