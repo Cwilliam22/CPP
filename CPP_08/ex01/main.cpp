@@ -1,8 +1,8 @@
 #include "Span.hpp"
 
-static void printResult(const char *label)
+static void printResult(const char *out)
 {
-    std::cout << "----- " << label << " -----" << std::endl;
+    std::cout << "\033[36m--- " << out << " ---\033[0m" << std::endl;
 }
 
 int main()

@@ -10,7 +10,10 @@ Span::Span(const Span& src) : _maxSize(src._maxSize) {
 
 Span& Span::operator=(const Span& src) {
     if (this != &src)
+    {
         this->_numbers = src._numbers;
+        this->_maxSize = src._maxSize;
+    }
     return (*this);
 }
 
