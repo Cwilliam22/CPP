@@ -1,0 +1,60 @@
+
+Class Span
+Est ce que je dois passer le nombre de Span max en const pour le sécuriser ?
+    const unsigned int     _maxSize;
+
+Remarque :
+    Les valeurs sont initialisé dans l'ordre dans lesquelles elles sont appellées dans la Class.
+
+Gérer le maximum de int possible dans mon conteneur
+    Il existe une fonction max_size() qui donne une borne théorique, mais elle
+    est de l'ordre de plusieurs milliards d'éléments -> ne sert à rien pour cette exo.
+
+Utilisation d'un std:vector pour stocker les nombres :
+    Il te faudra trier pour shortestSpan() (on en a parlé : trier, puis comparer
+    les éléments consécutifs). Or std::sort de <algorithm> exige des itérateurs
+    dits "à accès aléatoire" (random access iterators) — c'est-à-dire des itérateurs
+    capables de sauter directement à une position arbitraire, pas seulement d'avancer
+    un pas à la fois. std::vector fournit ce type d'itérateur ; std::list, non (sa
+    structure en nœuds chaînés ne le permet pas — c'est d'ailleurs pour ça que std::list
+    propose sa propre fonction membre sort(), séparée de celle de <algorithm>). Utiliser
+    un std::vector t'évite ce problème dès le départ.
+
+shortestSpan() :
+    On ne peut pas faire 10000 iterations (de comparaison) pour trouver le plus petit 
+    équart entre deux nombre.
+    Cela demanderait trop d'opérations.
+    Piste -> sorter la liste avant de comparer les équarts
+    <algorithm> -> std::sort
+    exemple : 
+        #include <iostream>
+        using namespace std;
+
+        int main(){
+            vector<int> v = {5, 3, 2, 1, 4};
+
+            // Sort vector (by default in ascending order)
+            sort(v.begin(), v.end());
+
+            for (int i : v)
+                cout << i << " ";
+            return 0;
+        }
+
+        -> 1 2 3 4 5 
+
+longestSpan() :
+    Connaître le plus grand et le plus petit élément stocké afin de le comparer
+    avec l'élément sur lequel on pointe et ainsi connaître sa longueur
+
+fonctions utiliser pour le projet : 
+    size()
+
+Hic conceptuel rencontré :
+    Le constructeur par défaut ne s'exécute jamais quand tu utilises le constructeur
+    de copie. Il n'y a pas de "phase 1 : construction par défaut pour donner une valeur
+    de base" suivie d'une "phase 2 : le constructeur de copie vient écraser cette valeur".
+    Seul le constructeur de copie s'exécute, intégralement, du début à la fin. Quand tu
+    écris Span b(a);, le compilateur regarde quel constructeur correspond à cet appel (ici,
+    un seul argument de type Span → le constructeur de copie), et c'est celui-là et uniquement
+    celui-là qui prend en charge la construction complète de b, de A à Z.
