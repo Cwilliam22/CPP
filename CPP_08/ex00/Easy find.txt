@@ -1,0 +1,31 @@
+itérateurs :
+
+
+
+templates
+
+STL (Standard Template Library)
+    basé sur les templates
+
+
+conteneurs : 
+    - Element de base de toute la STL
+    - Un objet permettant de stocker d'autres objets (ex : vector)
+    - Des conteneurs pour tous les usages
+    - Difficulté -> choisir
+    - Existe différentes méthode pour ranger les éléments dans un conteneur
+    - Il n'existe pas de "conteneur suprême" pour lequel toutes les opérations
+        sont rapides.
+    - Il faut choisir la méthode de stockage adaptée à chaque problème en
+        fonction des opérations que l'on veut privilégier. 
+    - conteneurs associatifs (map, set...)
+    - conteneurs séquentiels (vector ou list)
+        Les conteneurs séquences :
+            vector, deque, list, stack, queue, priority_queue
+        Les conteneurs associatifs : set, multiset, map, multimap
+    -> Quelle différence entre les deux ?
+         Les éléments sont classés à la suite les uns des autres ou non
+    -> You don’t have to handle associative containers. (exo)
+    
+    Suite pour les conteneurs 
+    -> https://openclassrooms.com/en/courses/7137751-programmez-en-oriente-objet-avec-c/7532251-utilisez-les-conteneurs
