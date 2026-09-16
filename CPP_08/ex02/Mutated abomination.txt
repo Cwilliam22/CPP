@@ -1,0 +1,14 @@
+std::stack conteneur
+    -> non itérable
+
+C'est quoi un conteneur itérable ?
+    -> Pas de begin(), pas de end(), pas de boucle for dessus.
+    -> Ne fournit que les fonctions suivantes :
+        push(), pop(), top(), size(), empty()
+    
+Faire des itérateurs pour pouvoir parcourir ce conteneur comme un vector (itérable)
+
+adaptateur de conteneur :
+    -> std::stack n'est pas un vrai conteneur autonome, c'est ce qu'on appelle un adaptateur
+    -> il ne stocke rien lui-même : il enveloppe un autre conteneur (par défaut un std::deque)
+        et se contente de restreindre l'interface qu'il expose publiquement.
