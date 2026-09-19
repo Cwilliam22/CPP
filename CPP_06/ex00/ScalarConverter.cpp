@@ -47,59 +47,31 @@ void pseudoLitteraux(int type) {
 	}
 }
 
-void printChar(const std::string& str, int type) {
-	if (type == 1) 
-	{
-		std::cout << "char: " << "'" << str[1] << "'" << std::endl;
-		return;
-	}
-	double valeur = strtol(str.c_str(), NULL, 10);
-	if (str[0] == '-' || str[0] == '+')
+void printChar(const double valeur) {
+	if (valeur > std::numeric_limits<int>::max() || valeur < std::numeric_limits<int>::min())
 		std::cout << "char: impossible" << std::endl;
-	else if (valeur > std::numeric_limits<int>::max() || valeur < std::numeric_limits<int>::min())
-		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(valeur) && (valeur < 33 || valeur > 127))
+	else if (valeur < 0 || valeur > 127 || !std::isprint(static_cast<int>(valeur)))
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << "'" << static_cast<char>(valeur) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(valeur) << "'" << std::endl;
 }
 
-void printInt(const std::string& str, int type) {
-	if (type == 1) 
-	{
-		std::cout << "int: " << static_cast<int>(str[1]) << std::endl;
-		return;
-	}
-	char* end;
-	double valeur = strtol(str.c_str(), &end, 10);
+void printInt(const double valeur) {
 	if (valeur > std::numeric_limits<int>::max() || valeur < std::numeric_limits<int>::min())
 		std::cout << "int: impossible" << std::endl;
 	else
-		std::cout << "int: " << valeur << std::endl;
+		std::cout << "int: " << static_cast<int>(valeur) << std::endl;
 }
 
-void printFloat(const std::string& str, int type) {
-	if (type == 1) 
-	{
-		std::cout << "float: " << static_cast<float>(str[1]) << ".0f" << std::endl;
-		return;
-	}
-	char* end;
-	float valeur = strtof(str.c_str(), &end);
-	if (valeur == std::floor(valeur))
-    	std::cout << "float: " << valeur << ".0f" << std::endl;
+void printFloat(const double valeur) {
+	float f = static_cast<float>(valeur);
+	if (f == std::floor(f))
+    	std::cout << "float: " << f << ".0f" << std::endl;
 	else
-    	std::cout << "float: " << valeur << "f" << std::endl;
+    	std::cout << "float: " << f << "f" << std::endl;
 }
 
-void printDouble(const std::string& str, int type) {
-	if (type == 1) 
-	{
-		std::cout << "double: " << static_cast<double>(str[1]) << ".0" << std::endl;
-		return;
-	}
-	char* end;
-	double valeur = strtod(str.c_str(), &end);
+void printDouble(const double valeur) {
 	if (valeur == std::floor(valeur))
 		std::cout << "double: " << valeur << ".0" << std::endl;
 	else
@@ -108,10 +80,14 @@ void printDouble(const std::string& str, int type) {
 
 void ScalarConverter::convert(const std::string& str) {
 
-	int type = 0; // 0: unknown, 1: char, 2: int, 3: float, 4: double
+	//int type = 0; // char->1, int->2, float->3, double->4
+	double valeur = 0;
 
-	if ((str[0] == 39) && (str[2] == 39) && (str.length() == 3))
-		type = 1;
+	if ((str[0] == 39) && (str.length() == 3) && (str[2] == 39))
+	{
+		//type = 1;
+		valeur = static_cast<double>(str[1]);
+	}
 	else if (str == "-inff" || str == "-inf")
 	{
 		pseudoLitteraux(1);
@@ -136,29 +112,33 @@ void ScalarConverter::convert(const std::string& str) {
 				std::cout << "Error: String not displayable." << std::endl;
 				return;
 			}
-			type = 3;
+			//type = 3;
+			valeur = strtof(str.c_str(), NULL);
 		}
 		else
 		{
 			if (!isFullyConsumed(str))
-			{
+			{ 
 				std::cout << "Error: String not displayable." << std::endl;
 				return;
 			}
-			type = 4;
+			//type = 4;
+			valeur = strtod(str.c_str(), NULL);
 		}
 	}
 	else if (isNumber(str))
-		type = 2;
+	{
+		//type = 2;
+		valeur = strtol(str.c_str(), NULL, 10);
+	}
 	else
 	{
 		std::cout << "Error: String not displayable." << std::endl;
 		return;
 	}
 
-	printChar(str, type);
-	printInt(str, type);
-	printFloat(str, type);
-	printDouble(str, type);
+	printChar(valeur);
+	printInt(valeur);
+	printFloat(valeur);
+	printDouble(valeur);
 }
-
