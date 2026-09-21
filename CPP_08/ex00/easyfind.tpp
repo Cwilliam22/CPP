@@ -3,10 +3,8 @@
 
 template <typename T>
 typename T::iterator easyfind(T &values, int wanted) {
-    for (typename T::iterator it = values.begin(); it != values.end(); ++it)
-    {
-        if (*it == wanted)
-            return (it);
-    }
-    throw NotFoundException();
+    typename T::iterator it = std::find(values.begin(), values.end(), wanted);
+    if (it == values.end())
+        throw NotFoundException();
+    return (it);
 }

@@ -174,5 +174,48 @@ int main()
         std::cout << "longestSpan():  " << sp.longestSpan() << " (attendu 9769023)" << std::endl;
     }
 
+    // 13. addRange() a partir d'un std::vector
+    printResult("addRange() depuis un std::vector");
+    {
+        Span sp(5);
+        std::vector<int> v;
+        v.push_back(6);
+        v.push_back(3);
+        v.push_back(17);
+        v.push_back(9);
+        v.push_back(11);
+        sp.addRange(v.begin(), v.end());
+        std::cout << "shortestSpan(): " << sp.shortestSpan() << " (attendu 2)" << std::endl;
+        std::cout << "longestSpan():  " << sp.longestSpan() << " (attendu 14)" << std::endl;
+    }
+
+    // 14. addRange() a partir d'un tableau C (verifie la genericite de InputIterator)
+    printResult("addRange() depuis un tableau C");
+    {
+        int arr[3] = {100, 200, 150};
+        Span sp(3);
+        sp.addRange(arr, arr + 3);
+        std::cout << "shortestSpan(): " << sp.shortestSpan() << " (attendu 50)" << std::endl;
+    }
+
+    // 15. addRange() qui depasse la capacite -> TooMuchNumException
+    printResult("addRange() qui depasse la capacite");
+    {
+        std::vector<int> v;
+        v.push_back(1);
+        v.push_back(2);
+        v.push_back(3);
+        Span sp(2);
+        try
+        {
+            sp.addRange(v.begin(), v.end());
+            std::cout << "Pas d'exception (INATTENDU)" << std::endl;
+        }
+        catch (std::exception &e)
+        {
+            std::cout << "Exception attendue: " << e.what() << std::endl;
+        }
+    }
+
     return (0);
 }

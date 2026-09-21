@@ -25,6 +25,15 @@ class Span
         double shortestSpan();
         double longestSpan();
 
+        template <typename InputIterator>
+        void addRange(InputIterator begin, InputIterator end) {
+            while (begin != end)
+            {
+                addNumber(*begin);
+                begin++;
+            }
+        }
+        
         class TooMuchNumException : public std::exception
         {
             public:

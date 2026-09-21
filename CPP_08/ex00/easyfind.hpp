@@ -5,9 +5,8 @@
 #include <algorithm>
 #include <vector>
 
-template <typename T> // template pour variable generique
-typename T::iterator // type de retour de la fonction easyfind
-easyfind(T &values, int wanted); // fonction
+template <typename T>
+typename T::iterator easyfind(T &values, int wanted);
 
 class NotFoundException : public std::exception
 {
