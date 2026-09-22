@@ -1,0 +1,68 @@
+use a DB in CSV format 
+representation du bitcoin dans le temps 
+DB dans le sujet
+
+L'input est un autre DB qui
+
+Le programme lit une liste de « date | quantité de bitcoins » 
+Affiche combien valait cette quantité à cette date.
+
+
+
+Imagine un carnet de cours de la bourse où, pour chaque jour, est noté le prix d'un bitcoin. 
+Quelqu'un te tend une liste du genre « le 3 janvier 2011, j'avais 3 bitcoins ». 
+Tu ouvres le carnet au 3 janvier 2011, tu lis le prix (0.3), et tu calcules 3 × 0.3 = 0.9.
+
+Il y a donc deux fichiers :
+
+Fichier	Qui le fournit	Contenu	Rôle
+data.csv	42 (livré avec le sujet)	date,exchange_rate	Le carnet des prix
+input.txt	L'utilisateur (passé en argument)	date | value	Les questions à traiter
+
+Attention au séparateur : c'est une virgule dans le CSV, et | dans le fichier d'entrée.
+
+Ce que le programme doit faire
+Nom : btc, lancé comme ./btc input.txt.
+Charger data.csv dans un conteneur de la STL (c'est le vrai but pédagogique du module).
+Lire input.txt ligne par ligne. La première ligne date | value est un en-tête : tu la sautes.
+Pour chaque ligne valide, afficher :
+   date => valeur = valeur × taux
+Pour chaque ligne invalide, afficher une erreur, puis continuer avec la ligne suivante. Une ligne fausse n'arrête pas le programme.
+La règle piège : la date manquante
+
+Le carnet n'a pas forcément une entrée pour chaque jour. Si la date demandée n'y est pas, tu prends la date la plus proche en dessous (la précédente), jamais celle d'après.
+
+Exemple : on te demande le 2011-01-09, mais le carnet n'a que le 07 et le 10. Tu prends le 07.
+
+C'est logique : on ne peut pas utiliser un prix qui n'était pas encore connu ce jour-là. Le choix du conteneur est donc important ici. Demande-toi quel conteneur range automatiquement ses éléments dans l'ordre et permet de retrouver facilement « l'élément juste avant ». Pour une date au format AAAA-MM-JJ, l'ordre alphabétique des chaînes est aussi l'ordre chronologique, ce qui est pratique.
+
+Les erreurs à gérer (d'après l'exemple du sujet)
+Situation	Exemple	Message
+Pas de fichier / impossible de l'ouvrir	./btc	Error: could not open file.
+Valeur négative	2012-01-11 | -1	Error: not a positive number.
+Valeur > 1000	2012-01-11 | 2147483648	Error: too large a number.
+Ligne mal formée ou date invalide	2001-42-42	Error: bad input => 2001-42-42
+
+Pour une date valide, il ne suffit pas de vérifier le format. Le mois doit être entre 1 et 12, et le jour doit exister dans ce mois (pas de 31 avril, et le 29 février seulement les années bissextiles).
+
+La valeur peut être un entier ou un nombre à virgule, entre 0 et 1000.
+
+Cas limites auxquels réfléchir avant de coder
+Une date antérieure à la toute première date du CSV : il n'existe aucune date « en dessous ». Que faire ? (En général on affiche une erreur.)
+Une ligne sans |, ou avec des espaces en trop ou en moins.
+Une valeur vide, ou 1.2.3, ou 12abc.
+Un fichier d'entrée vide.
+Rappel important sur les conteneurs
+
+Le conteneur que tu utilises ici sera interdit dans ex01 et ex02. L'ex02 en demande deux différents, donc choisis en connaissance de cause. Réserve plutôt vector et deque pour l'ex02.
+
+Si tu veux, on peut ensuite voir ensemble comment choisir le conteneur et comment trouver « la date juste en dessous », sans que je te donne le code tout fait.
+
+
+
+
+
+
+Prendre un fichier en argument : 
+    prendre l'argument fichier et le stocker dans une vriable qui peut le stocker
+    le lire ensuite ligne par ligne
